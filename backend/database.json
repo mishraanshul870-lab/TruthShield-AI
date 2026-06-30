@@ -1,0 +1,51 @@
+{
+  "users": [
+    {
+      "_id": "u_demo000001",
+      "username": "demo_user",
+      "email": "demo@truthshield.ai",
+      "password": "$2a$10$demoHashedPasswordForPublicRelease000000000000000000000",
+      "createdAt": "2026-01-01T00:00:00.000Z",
+      "resetPasswordToken": null,
+      "resetPasswordExpires": null
+    }
+  ],
+  "scans": [
+    {
+      "_id": "s_demo000001",
+      "userId": "u_demo000001",
+      "type": "text",
+      "content": "BREAKING: Scientists claim Earth is flat according to new study...",
+      "prediction": "Fake",
+      "confidenceScore": 94,
+      "credibilityScore": 6,
+      "riskLevel": "High",
+      "explanation": "This claim contradicts decades of scientific consensus. The content exhibits hallmarks of misinformation including sensationalist language and lack of credible sourcing.",
+      "provider": "Gemini",
+      "processingTime": 1240,
+      "status": "completed",
+      "createdAt": "2026-01-01T01:00:00.000Z",
+      "factCheckReport": null,
+      "manipulatedRegions": [],
+      "suspiciousSentences": []
+    },
+    {
+      "_id": "s_demo000002",
+      "userId": "u_demo000001",
+      "type": "url",
+      "content": "https://www.example.com/news/article",
+      "prediction": "Real",
+      "confidenceScore": 88,
+      "credibilityScore": 88,
+      "riskLevel": "Low",
+      "explanation": "Domain has strong reputation and content matches verified public records.",
+      "provider": "Gemini",
+      "processingTime": 950,
+      "status": "completed",
+      "createdAt": "2026-01-01T02:00:00.000Z",
+      "factCheckReport": null,
+      "manipulatedRegions": [],
+      "suspiciousSentences": []
+    }
+  ]
+}

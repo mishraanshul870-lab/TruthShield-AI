@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TruthShield AI Panel</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="cyber-container">
+    <!-- Header -->
+    <header class="cyber-header">
+      <div class="logo-box">🛡️</div>
+      <div class="logo-text">TRUTH<span>SHIELD</span></div>
+    </header>
+
+    <!-- Content Panel -->
+    <main class="cyber-main">
+      
+      <!-- Scan Initiator View -->
+      <section id="scan-view">
+        <p class="section-title">ACTIVE WEBPAGE SCAN</p>
+        
+        <div class="url-box">
+          <span class="url-label">Target URL:</span>
+          <span id="current-url" class="url-text">Loading tab URL...</span>
+        </div>
+
+        <button id="btn-scan" class="btn-primary">INITIATE THREAT AUDIT</button>
+      </section>
+
+      <!-- Loading View -->
+      <section id="loading-view" class="hidden text-center">
+        <div class="scanner-spinner"></div>
+        <p id="loading-status" class="loading-text">Resolving domain indices...</p>
+      </section>
+
+      <!-- Results View -->
+      <section id="results-view" class="hidden">
+        <div class="result-header">
+          <span class="result-label">VERDICT:</span>
+          <span id="result-verdict" class="verdict-value">REAL</span>
+        </div>
+
+        <div class="result-grid">
+          <div class="metric-card">
+            <span class="metric-title">Threat Score</span>
+            <span id="result-threat" class="metric-value">0%</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-title">Credibility</span>
+            <span id="result-credibility" class="metric-value">100</span>
+          </div>
+        </div>
+
+        <div class="risk-bar-container">
+          <span class="risk-label">Risk Rating: <strong id="result-risk">LOW</strong></span>
+          <div class="risk-track">
+            <div id="risk-fill" class="risk-fill"></div>
+          </div>
+        </div>
+
+        <div class="explanation-box">
+          <span class="explanation-title">AI Summary:</span>
+          <p id="result-explanation" class="explanation-text"></p>
+        </div>
+
+        <button id="btn-full-report" class="btn-primary" style="margin-bottom: 8px;">OPEN DETAILED REPORT</button>
+        <button id="btn-reset" class="btn-secondary">AUDIT NEW TAB</button>
+      </section>
+
+      <!-- Error / Auth Warning View -->
+      <section id="error-view" class="hidden">
+        <div class="error-badge">⚠️</div>
+        <p id="error-message" class="error-text">Failed to authenticate.</p>
+        <button id="btn-error-action" class="btn-primary">Retry</button>
+      </section>
+
+    </main>
+
+    <!-- Token Settings Footer Collapsible -->
+    <footer class="cyber-footer">
+      <details>
+        <summary>🔐 Credential Settings</summary>
+        <div class="settings-content">
+          <p class="settings-desc font-mono">Paste your JWT token from the web app profile to authorize scanner:</p>
+          <input type="password" id="input-token" placeholder="Bearer eyJhbGciOi..." style="margin-bottom: 8px;" />
+          <p class="settings-desc font-mono">Optionally paste OpenAI API key override:</p>
+          <input type="password" id="input-openai-key" placeholder="sk-proj-..." style="margin-bottom: 8px;" />
+          <button id="btn-save-token">Save Configuration</button>
+        </div>
+      </details>
+    </footer>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>

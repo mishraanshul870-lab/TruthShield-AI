@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "TruthShield AI - Authenticity Scanner",
+  "version": "1.0.0",
+  "description": "Scans current page URL for fake news threats and source credibility.",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}
