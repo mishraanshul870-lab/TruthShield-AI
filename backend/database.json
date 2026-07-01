@@ -4648,6 +4648,132 @@
       "status": "success",
       "timeline": [],
       "createdAt": "2026-07-01T19:53:05.500Z"
+    },
+    {
+      "_id": "s_8bjkb99mu",
+      "userId": "u_nrq1nibeh",
+      "type": "text",
+      "content": "This is a test scan to verify text parsing and credibility....",
+      "prediction": "Real",
+      "confidenceScore": 95,
+      "riskLevel": "Low",
+      "credibilityScore": 95,
+      "explanation": "URL domain verification confirms safe SSL encryption registers, matching valid reputation databases. Threat intelligence registries list zero active phishing reports.",
+      "suspiciousSentences": [],
+      "manipulatedRegions": [],
+      "factCheckReport": {
+        "prediction": "Real",
+        "confidenceScore": 95,
+        "verdict": "safe",
+        "riskLevel": "Low",
+        "aiGeneratedProbability": 5,
+        "humanAuthenticityProbability": 95,
+        "trustScore": 95,
+        "credibilityScore": 95,
+        "explanation": "URL domain verification confirms safe SSL encryption registers, matching valid reputation databases. Threat intelligence registries list zero active phishing reports.",
+        "findings": [
+          {
+            "title": "Domain reputation",
+            "severity": "None",
+            "confidence": 98,
+            "explanation": "Domain has high credibility score and long standing registration history.",
+            "whyItMatters": "Suspicious sites are often hosted on newly registered domain extensions."
+          },
+          {
+            "title": "SSL Security",
+            "severity": "None",
+            "confidence": 99,
+            "explanation": "SSL certificate is valid and issued by a verified authority.",
+            "whyItMatters": "Phishing links typically lack secure encrypting attributes."
+          }
+        ],
+        "recommendations": [
+          "Confirm domain matches official corporate branding pages.",
+          "Inspect URL path query strings for malicious parameters."
+        ],
+        "riskAssessment": {
+          "riskLevel": "Low",
+          "threatSeverity": "Low",
+          "riskFactors": [
+            "Secure SSL encryption",
+            "Valid registrar records"
+          ]
+        },
+        "claims": [],
+        "evidenceSources": [],
+        "credibilityAnalysis": {
+          "authorCredibility": "N/A - Unknown author.",
+          "writingQuality": "N/A - Standard syntactic structure.",
+          "citationQuality": "N/A - References not assessed.",
+          "consistency": "N/A - Consistency check skipped.",
+          "transparency": "N/A - Publisher metrics missing.",
+          "overallCredibility": 50
+        },
+        "explainableAI": {
+          "limitations": "Analysis is based on static text classification and pre-trained database checkpoints.",
+          "reasoningSteps": [
+            "Parsing text layout structure.",
+            "Evaluating linguistic patterns against heuristic scales.",
+            "Synthesizing composite threat verdict."
+          ],
+          "importantSentences": [],
+          "suspiciousWording": [],
+          "contradictions": [],
+          "unsupportedClaims": []
+        },
+        "manipulationTechniques": {
+          "emotionalLanguageAnalysis": "Not analyzed.",
+          "clickbaitDetection": "Not analyzed.",
+          "propagandaDetection": "Not analyzed.",
+          "logicalFallacies": "None detected.",
+          "unsupportedClaims": "None detected.",
+          "biasAnalysis": "Neutral presentation style.",
+          "misinformationIndicators": "None detected.",
+          "writingStyle": "Standard syntax.",
+          "linguisticPatterns": "None detected.",
+          "fearTactics": "None detected.",
+          "sensationalLanguage": "None detected.",
+          "politicalBias": "None detected.",
+          "loadedWords": "None detected.",
+          "exaggeration": "None detected."
+        },
+        "reasoning": {
+          "whySuspicious": "No immediate structural anomalies detected.",
+          "whyConclusion": "URL domain verification confirms safe SSL encryption registers, matching valid reputation databases. Threat intelligence registries list zero active phishing reports."
+        },
+        "executiveSummary": "URL domain verification confirms safe SSL encryption registers, matching valid reputation databases. Threat intelligence registries list zero active phishing reports.",
+        "provider": "MockFailover",
+        "model": "failover-local-generator",
+        "switchedToOpenAI": false,
+        "timestamp": "2026-07-01T20:13:01.373Z",
+        "processingTime": 2063
+      },
+      "thumbnail": "",
+      "provider": "MockFailover",
+      "processingTime": 2063,
+      "status": "success",
+      "timeline": [],
+      "createdAt": "2026-07-01T20:13:01.373Z"
+    },
+    {
+      "_id": "s_gh3k7ufso",
+      "userId": "u_nrq1nibeh",
+      "type": "url",
+      "content": "https://news.ycombinator.com/",
+      "prediction": "Real",
+      "confidenceScore": 95,
+      "riskLevel": "Low",
+      "credibilityScore": 95,
+      "explanation": "URL domain verification confirms safe SSL encryption registers, matching valid reputation databases. Threat intelligence registries list zero active phishing reports.\n\n✅ SSL AUDIT SUCCESS: The URL uses a secure HTTPS connection with active encryption protocols.",
+      "suspiciousSentences": [],
+      "manipulatedRegions": [],
+      "factCheckReport": null,
+      "thumbnail": "",
+      "provider": "MockFailover",
+      "processingTime": 1840,
+      "status": "success",
+      "timeline": [],
+      "createdAt": "2026-07-01T20:13:03.247Z"
     }
   ],
   "notifications": [
@@ -4812,6 +4938,24 @@
       "type": "success",
       "read": false,
       "createdAt": "2026-07-01T19:53:05.517Z"
+    },
+    {
+      "_id": "n_3lb78jfuv",
+      "userId": "u_nrq1nibeh",
+      "title": "Scan Completed",
+      "message": "Your text scan for \"This is a test scan to verify ...\" has completed successfully.",
+      "type": "success",
+      "read": false,
+      "createdAt": "2026-07-01T20:13:01.378Z"
+    },
+    {
+      "_id": "n_yr0rkp553",
+      "userId": "u_nrq1nibeh",
+      "title": "Scan Completed",
+      "message": "Your url scan for \"https://news.ycombinator.com/\" has completed successfully.",
+      "type": "success",
+      "read": false,
+      "createdAt": "2026-07-01T20:13:03.253Z"
     }
   ]
 }

@@ -65,7 +65,8 @@ const Reports = () => {
       
       const data = await response.json();
       try {
-        localStorage.setItem('cached_reports', JSON.stringify(data));
+        const slicedData = Array.isArray(data) ? data.slice(0, 25) : data;
+        localStorage.setItem('cached_reports', JSON.stringify(slicedData));
       } catch (cacheErr) {
         console.warn('[Reports] Offline storage caching failed:', cacheErr.message);
       }
