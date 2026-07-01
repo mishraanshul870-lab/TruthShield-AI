@@ -5,6 +5,7 @@ import {
   Info, History, Camera, Eye, HelpCircle, HardDrive, RefreshCw
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import API_BASE from "../api";
 
 const ImageForensicResult = ({ result, onScanAgain, originalPreview }) => {
   const { t, i18n } = useTranslation(['image', 'imageResults', 'commonResults']);
@@ -194,7 +195,7 @@ const ImageForensicResult = ({ result, onScanAgain, originalPreview }) => {
     try {
       const token = localStorage.getItem('token');
       const lang = i18n.language || 'en';
-      const response = await fetch(`/api/analyze/report/${result.scanId || result._id}?lang=${lang}`, {
+      const response = await fetch(`${API_BASE}/api/analyze/report/${result.scanId || result._id}?lang=${lang}`, {
         method: 'GET',
         headers: { 'Authorization': `Bearer ${token}` }
       });

@@ -5,6 +5,7 @@ import {
   AlertTriangle, RefreshCw, Download, Eye, Trash2, Hash
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import API_BASE from "../api";
 import ResultCard from '../components/ResultCard';
 import FactCheckResult from '../components/FactCheckResult';
 import ImageForensicResult from '../components/ImageForensicResult';
@@ -46,14 +47,18 @@ const HistoryPage = () => {
     setError('');
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('/api/analyze/history', {
+      const response = await fetch(`${API_BASE}/api/analyze/history`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
       if (!response.ok) throw new Error(t('loadRecordsError'));
       
       const data = await response.json();
-      localStorage.setItem('cached_history_scans', JSON.stringify(data));
+      try {
+        localStorage.setItem('cached_history_scans', JSON.stringify(data));
+      } catch (cacheErr) {
+        console.warn('[History] Offline storage caching failed:', cacheErr.message);
+      }
 
       setScans(data);
       setHasFetched(true);
@@ -76,7 +81,7 @@ const HistoryPage = () => {
   const handleDeleteScan = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`/api/analyze/history/${id}`, {
+      const response = await fetch(`${API_BASE}/api/analyze/history/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -95,7 +100,7 @@ const HistoryPage = () => {
     if (!window.confirm(t('clearAllConfirm'))) return;
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`/api/analyze/history`, {
+      const response = await fetch(`${API_BASE}/api/analyze/history`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -116,7 +121,7 @@ const HistoryPage = () => {
     try {
       const token = localStorage.getItem('token');
       const lang = i18n.language || 'en';
-      const response = await fetch(`/api/analyze/report/${scanId}?lang=${lang}`, {
+      const response = await fetch(`${API_BASE}/api/analyze/report/${scanId}?lang=${lang}`, {
         method: 'GET',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -177,7 +182,7 @@ const HistoryPage = () => {
     const saveExportNotification = async () => {
       try {
         const token = localStorage.getItem('token');
-        await fetch('/api/notifications', {
+        await fetch(`${API_BASE}/api/notifications`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

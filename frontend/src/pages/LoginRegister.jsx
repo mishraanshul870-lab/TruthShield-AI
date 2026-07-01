@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import API_BASE from "../api";
 import { Shield, Mail, Lock, User, Eye, EyeOff, RefreshCw } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
@@ -39,7 +40,7 @@ const LoginRegister = () => {
 
     if (isForgot) {
       try {
-        const response = await fetch('/api/auth/forgot-password', {
+        const response = await fetch(`${API_BASE}/api/auth/forgot-password`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -70,12 +71,12 @@ const LoginRegister = () => {
     }
 
     const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
-    const payload = isLogin 
+    const payload = isLogin
       ? { email: formData.email, password: formData.password }
       : { username: formData.username, email: formData.email, password: formData.password };
 
     try {
-      const response = await fetch(endpoint, {
+      const response = await fetch(`${API_BASE}${endpoint}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

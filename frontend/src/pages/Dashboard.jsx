@@ -7,6 +7,7 @@ import {
   XCircle, BarChart3, Timer, Download, Eye, Trash2, Search
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import API_BASE from "../api";
 import ResultCard from '../components/ResultCard';
 import FactCheckResult from '../components/FactCheckResult';
 import ImageForensicResult from '../components/ImageForensicResult';
@@ -25,7 +26,7 @@ const Dashboard = () => {
   const handleDeleteScan = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`/api/analyze/history/${id}`, {
+      const response = await fetch(`${API_BASE}/api/analyze/history/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -44,7 +45,7 @@ const Dashboard = () => {
     setError('');
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('/api/dashboard/stats', {
+      const res = await fetch(`${API_BASE}/api/dashboard/stats`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (!res.ok) throw new Error('Failed to fetch stats');
@@ -144,7 +145,7 @@ const Dashboard = () => {
     try {
       const token = localStorage.getItem('token');
       const lang = i18n.language || 'en';
-      const response = await fetch(`/api/analyze/report/${scanId}?lang=${lang}`, {
+      const response = await fetch(`${API_BASE}/api/analyze/report/${scanId}?lang=${lang}`, {
         method: 'GET',
         headers: { 'Authorization': `Bearer ${token}` }
       });

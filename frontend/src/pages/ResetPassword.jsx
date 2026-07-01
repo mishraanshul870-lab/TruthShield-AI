@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Shield, Lock, Eye, EyeOff, RefreshCw } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import API_BASE from "../api";
 
 const ResetPassword = () => {
   const { t } = useTranslation('auth');
@@ -20,7 +21,7 @@ const ResetPassword = () => {
     setSuccess('');
 
     if (password !== confirmPassword) {
-      setError(t('passwordsMismatch'));
+      setError(t('passwordMatchError'));
       return;
     }
 
@@ -35,7 +36,7 @@ const ResetPassword = () => {
     const timeoutId = setTimeout(() => controller.abort(), 8000);
 
     try {
-      const response = await fetch(`/api/auth/reset-password/${token}`, {
+      const response = await fetch(`${API_BASE}/api/auth/reset-password/${token}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

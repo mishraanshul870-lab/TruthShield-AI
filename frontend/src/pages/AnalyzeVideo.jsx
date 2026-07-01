@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Video, Upload, RefreshCw, AlertCircle, ShieldCheck, X, Replace, Search, FileVideo } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import API_BASE from "../api";
 import VideoForensicResult from '../components/VideoForensicResult';
 
 const AnalyzeVideo = () => {
@@ -163,7 +164,7 @@ const AnalyzeVideo = () => {
         headers['x-huggingface-key'] = customHFKey;
       }
 
-      const response = await fetch('/api/analyze/video', {
+      const response = await fetch(`${API_BASE}/api/analyze/video`, {
         method: 'POST',
         headers,
         body: formData
@@ -184,11 +185,15 @@ const AnalyzeVideo = () => {
       setResult(data);
       window.dispatchEvent(new Event('scan-completed'));
       window.dispatchEvent(new Event('scan-updated'));
-      localStorage.setItem('latestVideoScan', JSON.stringify({
-        result: data,
-        preview: meta.thumbnail || '',
-        meta: meta
-      }));
+      try {
+        localStorage.setItem('latestVideoScan', JSON.stringify({
+          result: data,
+          preview: meta.thumbnail || '',
+          meta: meta
+        }));
+      } catch (cacheErr) {
+        console.warn('[AnalyzeVideo] Local storage caching failed:', cacheErr.message);
+      }
     } catch (err) {
       console.error('Scan error:', err);
       if (err.message === 'Failed to fetch') {

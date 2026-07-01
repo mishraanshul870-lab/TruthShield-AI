@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Settings } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import API_BASE from "../api";
 import GeneralSettings from './settings/GeneralSettings';
 import ProfileSettings from './settings/ProfileSettings';
 import SecuritySettings from './settings/SecuritySettings';
@@ -36,7 +37,7 @@ const SettingsPage = () => {
   const checkHealth = async () => {
     setIsSyncing(true);
     try {
-      const response = await fetch('/api/health');
+      const response = await fetch(`${API_BASE}/api/health`);
       if (response.ok) {
         setBackendStatus('Operational (Online)');
       } else {
@@ -52,7 +53,7 @@ const SettingsPage = () => {
   const fetchProfile = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('/api/auth/profile', {
+      const response = await fetch(`${API_BASE}/api/auth/profile`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
@@ -73,7 +74,7 @@ const SettingsPage = () => {
     setProfileErr('');
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('/api/auth/profile', {
+      const res = await fetch(`${API_BASE}/api/auth/profile`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -107,7 +108,7 @@ const SettingsPage = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('/api/auth/password', {
+      const res = await fetch(`${API_BASE}/api/auth/password`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

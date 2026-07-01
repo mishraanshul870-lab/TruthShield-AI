@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ShieldAlert, ShieldCheck, Download, AlertTriangle, Cpu, Globe, RefreshCw } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import API_BASE from "../api";
 
 const ResultCard = ({ result, onScanAgain }) => {
   const { t, i18n } = useTranslation(['url', 'urlResults', 'commonResults']);
@@ -43,7 +44,7 @@ const ResultCard = ({ result, onScanAgain }) => {
       const token = localStorage.getItem('token');
       const scanId = result.scanId || result._id;
       const lang = i18n.language || 'en';
-      const response = await fetch(`/api/analyze/report/${scanId}?lang=${lang}`, {
+      const response = await fetch(`${API_BASE}/api/analyze/report/${scanId}?lang=${lang}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`

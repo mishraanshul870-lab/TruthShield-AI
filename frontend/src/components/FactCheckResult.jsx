@@ -6,6 +6,7 @@ import {
   AlertCircle, ExternalLink, Activity, Info
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import API_BASE from "../api";
 
 const FactCheckResult = ({ result, onScanAgain }) => {
   const { t, i18n } = useTranslation(['text', 'textResults', 'commonResults']);
@@ -133,7 +134,7 @@ const FactCheckResult = ({ result, onScanAgain }) => {
       const token = localStorage.getItem('token');
       const scanId = result.scanId || result._id;
       const lang = i18n.language || 'en';
-      const response = await fetch(`/api/analyze/report/${scanId}?lang=${lang}`, {
+      const response = await fetch(`${API_BASE}/api/analyze/report/${scanId}?lang=${lang}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`

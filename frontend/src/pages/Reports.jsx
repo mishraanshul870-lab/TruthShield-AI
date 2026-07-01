@@ -5,6 +5,7 @@ import {
   Eye, Trash2, AlertTriangle 
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import API_BASE from "../api";
 import ResultCard from '../components/ResultCard';
 import FactCheckResult from '../components/FactCheckResult';
 import ImageForensicResult from '../components/ImageForensicResult';
@@ -32,7 +33,7 @@ const Reports = () => {
   const handleDeleteReport = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`/api/analyze/history/${id}`, {
+      const response = await fetch(`${API_BASE}/api/analyze/history/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -56,14 +57,18 @@ const Reports = () => {
     setError('');
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('/api/analyze/history', {
+      const response = await fetch(`${API_BASE}/api/analyze/history`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
       if (!response.ok) throw new Error(t('loadReportsError'));
       
       const data = await response.json();
-      localStorage.setItem('cached_reports', JSON.stringify(data));
+      try {
+        localStorage.setItem('cached_reports', JSON.stringify(data));
+      } catch (cacheErr) {
+        console.warn('[Reports] Offline storage caching failed:', cacheErr.message);
+      }
 
       setReports(data);
       setHasFetched(true);
@@ -86,7 +91,7 @@ const Reports = () => {
     try {
       const token = localStorage.getItem('token');
       const lang = i18n.language || 'en';
-      const response = await fetch(`/api/analyze/report/${scanId}?lang=${lang}`, {
+      const response = await fetch(`${API_BASE}/api/analyze/report/${scanId}?lang=${lang}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`

@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Image, Upload, RefreshCw, AlertCircle, ShieldCheck, X, Replace, Search, FileImage } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import API_BASE from "../api";
 import ImageForensicResult from '../components/ImageForensicResult';
 
 const AnalyzeImage = () => {
@@ -104,7 +105,7 @@ const AnalyzeImage = () => {
         headers['x-huggingface-key'] = customHFKey;
       }
 
-      const response = await fetch('/api/analyze/image', {
+      const response = await fetch(`${API_BASE}/api/analyze/image`, {
         method: 'POST',
         headers,
         body: formData
@@ -132,17 +133,25 @@ const AnalyzeImage = () => {
       if (file) {
         const reader = new FileReader();
         reader.onloadend = () => {
-          localStorage.setItem('latestImageScan', JSON.stringify({
-            result: data,
-            preview: reader.result
-          }));
+          try {
+            localStorage.setItem('latestImageScan', JSON.stringify({
+              result: data,
+              preview: reader.result
+            }));
+          } catch (cacheErr) {
+            console.warn('[AnalyzeImage] Local storage caching failed:', cacheErr.message);
+          }
         };
         reader.readAsDataURL(file);
       } else {
-        localStorage.setItem('latestImageScan', JSON.stringify({
-          result: data,
-          preview: null
-        }));
+        try {
+          localStorage.setItem('latestImageScan', JSON.stringify({
+            result: data,
+            preview: null
+          }));
+        } catch (cacheErr) {
+          console.warn('[AnalyzeImage] Local storage caching failed:', cacheErr.message);
+        }
       }
     } catch (err) {
       console.error('Scan error:', err);

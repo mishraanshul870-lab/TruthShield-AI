@@ -3,6 +3,7 @@ import { Search, Bell, ChevronDown, LogOut, User, Settings, Menu, CheckCircle, A
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import API_BASE from "../api";
 
 const Topbar = ({ onMenuClick }) => {
   const { t } = useTranslation();
@@ -16,7 +17,7 @@ const Topbar = ({ onMenuClick }) => {
     try {
       const token = localStorage.getItem('token');
       if (!token) return;
-      const response = await fetch('/api/notifications', {
+      const response = await fetch(`${API_BASE}/api/notifications`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
@@ -31,7 +32,7 @@ const Topbar = ({ onMenuClick }) => {
   const handleMarkAllRead = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('/api/notifications/read', {
+      const response = await fetch(`${API_BASE}/api/notifications/read`, {
         method: 'PUT',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -46,7 +47,7 @@ const Topbar = ({ onMenuClick }) => {
   const handleMarkRead = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`/api/notifications/${id}/read`, {
+      const response = await fetch(`${API_BASE}/api/notifications/${id}/read`, {
         method: 'PUT',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -61,7 +62,7 @@ const Topbar = ({ onMenuClick }) => {
   const handleDeleteNotif = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`/api/notifications/${id}`, {
+      const response = await fetch(`${API_BASE}/api/notifications/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link2, Search, RefreshCw, AlertCircle, ShieldCheck } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import API_BASE from "../api";
 import ResultCard from '../components/ResultCard';
 
 const VerifyUrl = () => {
@@ -29,13 +30,13 @@ const VerifyUrl = () => {
     setResult(null);
     setError('');
 
-    setStatusMessage(t('statusResolving'));
+    setStatusMessage(t('analyzingRegistry'));
     const timer1 = setTimeout(() => setStatusMessage(t('statusFetching')), 1000);
     const timer2 = setTimeout(() => setStatusMessage(t('statusAnalyzing')), 2000);
 
     try {
       const token = localStorage.getItem('token');
-      const customOpenAIKey = localStorage.getItem('x-openai-key') || '';
+      const customOpenAIKey = localStorage.getItem('custom_openai_key') || '';
       
       const headers = {
         'Content-Type': 'application/json',
@@ -47,7 +48,7 @@ const VerifyUrl = () => {
         headers['x-openai-key'] = customOpenAIKey;
       }
 
-      const response = await fetch('/api/analyze/url', {
+      const response = await fetch(`${API_BASE}/api/analyze/url`, {
         method: 'POST',
         headers,
         body: JSON.stringify({ url })

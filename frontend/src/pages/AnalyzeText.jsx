@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FileText, Upload, RefreshCw, AlertCircle, ShieldCheck } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import API_BASE from "../api";
 import FactCheckResult from '../components/FactCheckResult';
 
 const AnalyzeText = () => {
@@ -57,13 +58,13 @@ const AnalyzeText = () => {
         const formData = new FormData();
         formData.append('pdf', file);
         
-        response = await fetch('/api/analyze/text', {
+        response = await fetch(`${API_BASE}/api/analyze/text`, {
           method: 'POST',
           headers,
           body: formData
         });
       } else {
-        response = await fetch('/api/analyze/text', {
+        response = await fetch(`${API_BASE}/api/analyze/text`, {
           method: 'POST',
           headers: {
             ...headers,
