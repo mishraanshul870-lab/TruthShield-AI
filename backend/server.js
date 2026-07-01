@@ -31,23 +31,36 @@ app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 
 // --- REQUEST & RESPONSE LOGGING MIDDLEWARE ---
 const truncateLargeData = (obj) => {
-  if (typeof obj === 'string') {
-    if (obj.length > 500) {
-      return `${obj.substring(0, 500)}... [TRUNCATED ${obj.length} chars]`;
+  const seen = new WeakSet();
+
+  const helper = (value) => {
+    if (value === null || typeof value !== "object") {
+      if (typeof value === "string" && value.length > 500) {
+        return value.substring(0, 500) + "...";
+      }
+      return value;
     }
-    return obj;
-  }
-  if (Array.isArray(obj)) {
-    return obj.map(truncateLargeData);
-  }
-  if (obj !== null && typeof obj === 'object') {
-    const newObj = {};
-    for (const key in obj) {
-      newObj[key] = truncateLargeData(obj[key]);
+
+    if (seen.has(value)) {
+      return "[Circular]";
     }
-    return newObj;
-  }
-  return obj;
+
+    seen.add(value);
+
+    if (Array.isArray(value)) {
+      return value.map(helper);
+    }
+
+    const result = {};
+
+    for (const key in value) {
+      result[key] = helper(value[key]);
+    }
+
+    return result;
+  };
+
+  return helper(obj);
 };
 
 app.use((req, res, next) => {
@@ -55,7 +68,7 @@ app.use((req, res, next) => {
   console.log(`\n========================================`);
   console.log(`[${timestamp}] 📥 INCOMING REQUEST: ${req.method} ${req.url}`);
   console.log(`Headers:`, JSON.stringify(req.headers, null, 2));
-  
+
   if (req.body && Object.keys(req.body).length > 0) {
     const logBody = { ...req.body };
     if (logBody.password) logBody.password = '[REDACTED]';
@@ -239,7 +252,7 @@ const PORT = process.env.PORT || 5000;
 const startServer = async () => {
   try {
     await connectDB();
-    
+
     // Perform OpenAI key verification audit on startup asynchronously
     console.log('🔍 Auditing OpenAI API Key status...');
     verifyOpenAIKey().then((verifyResult) => {
