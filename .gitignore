@@ -102,3 +102,5 @@ walkthrough.md
 # to commit them for reproducible installs)
 # NOTE: package-lock.json files are intentionally committed.
 # ------------------------------------------------------------
+
+backend/database.json
