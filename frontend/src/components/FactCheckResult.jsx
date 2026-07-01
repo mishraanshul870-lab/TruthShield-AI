@@ -54,53 +54,57 @@ const FactCheckResult = ({ result, onScanAgain }) => {
     : (isFake ? (100 - confidenceScore) : (isMixed ? 50 : confidenceScore));
 
   const executiveSummary = report.executiveSummary || report.explanation || result.explanation || '';
-  const claims = report.claims || [];
-  const evidenceSources = report.evidenceSources || [];
-  const recommendations = report.recommendations || [];
+  const claims = Array.isArray(report.claims) ? report.claims : [];
+  const evidenceSources = Array.isArray(report.evidenceSources) ? report.evidenceSources : [];
+  const recommendations = Array.isArray(report.recommendations) ? report.recommendations : [];
 
-  const reasoning = report.reasoning || {
-    whySuspicious: isFake ? 'The text contains multiple clickbait and sensationalist phrases typical of fabricated copycat releases.' : 'The text maintains an objective tone matching verified factual reports.',
-    whyConclusion: report.explanation || 'Classification completed.'
+  const rawReasoning = report.reasoning || {};
+  const reasoning = {
+    whySuspicious: rawReasoning.whySuspicious || (isFake ? 'The text contains multiple clickbait and sensationalist phrases typical of fabricated copycat releases.' : 'The text maintains an objective tone matching verified factual reports.'),
+    whyConclusion: rawReasoning.whyConclusion || report.explanation || 'Classification completed.'
   };
 
-  const manipulationTechniques = report.manipulationTechniques || {
-    emotionalLanguageAnalysis: 'Not analyzed.',
-    clickbaitDetection: 'Not analyzed.',
-    propagandaDetection: 'Not analyzed.',
-    logicalFallacies: 'None detected.',
-    unsupportedClaims: 'None detected.',
-    biasAnalysis: 'Neutral presentation style.',
-    misinformationIndicators: 'None detected.',
-    writingStyle: 'Standard syntax.',
-    linguisticPatterns: 'None detected.',
-    fearTactics: 'None detected.',
-    sensationalLanguage: 'None detected.',
-    politicalBias: 'None detected.',
-    loadedWords: 'None detected.',
-    exaggeration: 'None detected.'
+  const rawManip = report.manipulationTechniques || {};
+  const manipulationTechniques = {
+    emotionalLanguageAnalysis: rawManip.emotionalLanguageAnalysis || 'Not analyzed.',
+    clickbaitDetection: rawManip.clickbaitDetection || 'Not analyzed.',
+    propagandaDetection: rawManip.propagandaDetection || 'Not analyzed.',
+    logicalFallacies: rawManip.logicalFallacies || 'None detected.',
+    unsupportedClaims: rawManip.unsupportedClaims || 'None detected.',
+    biasAnalysis: rawManip.biasAnalysis || 'Neutral presentation style.',
+    misinformationIndicators: rawManip.misinformationIndicators || 'None detected.',
+    writingStyle: rawManip.writingStyle || 'Standard syntax.',
+    linguisticPatterns: rawManip.linguisticPatterns || 'None detected.',
+    fearTactics: rawManip.fearTactics || 'None detected.',
+    sensationalLanguage: rawManip.sensationalLanguage || 'None detected.',
+    politicalBias: rawManip.politicalBias || 'None detected.',
+    loadedWords: rawManip.loadedWords || 'None detected.',
+    exaggeration: rawManip.exaggeration || 'None detected.'
   };
 
-  const credibilityAnalysis = report.credibilityAnalysis || {
-    authorCredibility: 'Unknown author.',
-    writingQuality: 'Standard quality.',
-    citationQuality: 'No citations evaluated.',
-    consistency: 'Consistent argumentation.',
-    transparency: 'Transparency not rated.',
-    overallCredibility: 50
+  const rawCred = report.credibilityAnalysis || {};
+  const credibilityAnalysis = {
+    authorCredibility: rawCred.authorCredibility || 'Unknown author.',
+    writingQuality: rawCred.writingQuality || 'Standard quality.',
+    citationQuality: rawCred.citationQuality || 'No citations evaluated.',
+    consistency: rawCred.consistency || 'Consistent argumentation.',
+    transparency: rawCred.transparency || 'Transparency not rated.',
+    overallCredibility: rawCred.overallCredibility !== undefined ? rawCred.overallCredibility : 50
   };
 
-  const explainableAI = report.explainableAI || {
-    limitations: 'Static pre-trained network model. Knowledge cutoff is active; real-time web checking is simulated via internal database checkpoints.',
-    reasoningSteps: [
+  const rawXAI = report.explainableAI || {};
+  const explainableAI = {
+    limitations: rawXAI.limitations || 'Static pre-trained network model. Knowledge cutoff is active; real-time web checking is simulated via internal database checkpoints.',
+    reasoningSteps: Array.isArray(rawXAI.reasoningSteps) ? rawXAI.reasoningSteps : [
       'Step 1: Extract core factual assertions.',
       'Step 2: Cross-examine grammar choices and linguistic manipulation techniques.',
       'Step 3: Correlate with Snopes and Reuters databases.',
       'Step 4: Compute composite Trust Score.'
     ],
-    importantSentences: [],
-    suspiciousWording: [],
-    contradictions: [],
-    unsupportedClaims: []
+    importantSentences: Array.isArray(rawXAI.importantSentences) ? rawXAI.importantSentences : [],
+    suspiciousWording: Array.isArray(rawXAI.suspiciousWording) ? rawXAI.suspiciousWording : [],
+    contradictions: Array.isArray(rawXAI.contradictions) ? rawXAI.contradictions : [],
+    unsupportedClaims: Array.isArray(rawXAI.unsupportedClaims) ? rawXAI.unsupportedClaims : []
   };
 
   // Verdict levels theme mapper

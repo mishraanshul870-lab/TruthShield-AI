@@ -2046,12 +2046,11 @@ Do NOT translate JSON keys. Only translate the string values.
 ` : ''}`;
 
     const userPrompt = `Analyze the domain reputation for: ${domain}`;
-    
     const { provider, result, switchedToOpenAI } = await ProviderManager.callChat(
       systemPrompt,
       userPrompt
     );
-    
+
     // Deduct credibility score if not HTTPS
     if (!isHttps) {
       result.credibilityScore = Math.max(10, result.credibilityScore - 25);
@@ -2077,9 +2076,9 @@ Do NOT translate JSON keys. Only translate the string values.
       type: 'url',
       content: url,
       prediction: result.prediction,
-      confidenceScore: result.confidenceScore,
-      riskLevel: result.riskLevel,
-      credibilityScore: result.credibilityScore,
+      confidenceScore: result.confidenceScore || 50,
+      riskLevel: result.riskLevel || 'Low',
+      credibilityScore: result.credibilityScore || result.trustScore || 50,
       explanation: result.explanation,
       provider: provider,
       processingTime: Date.now() - startTime

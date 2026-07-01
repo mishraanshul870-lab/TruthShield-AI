@@ -4112,6 +4112,542 @@
         }
       ],
       "createdAt": "2026-07-01T07:11:06.761Z"
+    },
+    {
+      "_id": "s_vccbhyn3p",
+      "userId": "u_nrq1nibeh",
+      "type": "url",
+      "content": "https://www.google.com/",
+      "prediction": "Real",
+      "confidenceScore": 100,
+      "riskLevel": "Low",
+      "credibilityScore": 100,
+      "explanation": "Google.com is the official domain for Google, a subsidiary of Alphabet Inc., one of the largest and most reputable technology companies globally. The domain is highly authentic, widely recognized, and has a long-standing history of legitimate operations. Ownership is transparent, belonging to a publicly traded corporation. While Google provides platforms for news aggregation and search, google.com itself serves as the corporate website and is not a news outlet with a reporting bias. Its SSL status is secure (HTTPS), further indicating a trustworthy connection. There are no known issues regarding its authenticity or a history of false claims from the domain itself.\n\n✅ SSL AUDIT SUCCESS: The URL uses a secure HTTPS connection with active encryption protocols.",
+      "suspiciousSentences": [],
+      "manipulatedRegions": [],
+      "factCheckReport": null,
+      "thumbnail": "",
+      "provider": "Gemini",
+      "processingTime": 4347,
+      "status": "success",
+      "timeline": [],
+      "createdAt": "2026-07-01T19:38:02.701Z"
+    },
+    {
+      "_id": "s_hy917kei9",
+      "userId": "u_nrq1nibeh",
+      "type": "url",
+      "content": "https://www.google.com/",
+      "prediction": "Real",
+      "confidenceScore": 95,
+      "riskLevel": "Low",
+      "credibilityScore": 95,
+      "explanation": "URL domain verification confirms safe SSL encryption registers, matching valid reputation databases. Threat intelligence registries list zero active phishing reports.\n\n✅ SSL AUDIT SUCCESS: The URL uses a secure HTTPS connection with active encryption protocols.",
+      "suspiciousSentences": [],
+      "manipulatedRegions": [],
+      "factCheckReport": null,
+      "thumbnail": "",
+      "provider": "MockFailover",
+      "processingTime": 2119,
+      "status": "success",
+      "timeline": [],
+      "createdAt": "2026-07-01T19:44:14.977Z"
+    },
+    {
+      "_id": "s_foe851fit",
+      "userId": "u_nrq1nibeh",
+      "type": "text",
+      "content": "This is a test scan to verify text parsing and credibility....",
+      "prediction": "Real",
+      "confidenceScore": 95,
+      "riskLevel": "Low",
+      "credibilityScore": 95,
+      "explanation": "URL domain verification confirms safe SSL encryption registers, matching valid reputation databases. Threat intelligence registries list zero active phishing reports.",
+      "suspiciousSentences": [],
+      "manipulatedRegions": [],
+      "factCheckReport": {
+        "prediction": "Real",
+        "confidenceScore": 95,
+        "verdict": "safe",
+        "riskLevel": "Low",
+        "aiGeneratedProbability": 5,
+        "humanAuthenticityProbability": 95,
+        "trustScore": 95,
+        "credibilityScore": 95,
+        "explanation": "URL domain verification confirms safe SSL encryption registers, matching valid reputation databases. Threat intelligence registries list zero active phishing reports.",
+        "findings": [
+          {
+            "title": "Domain reputation",
+            "severity": "None",
+            "confidence": 98,
+            "explanation": "Domain has high credibility score and long standing registration history.",
+            "whyItMatters": "Suspicious sites are often hosted on newly registered domain extensions."
+          },
+          {
+            "title": "SSL Security",
+            "severity": "None",
+            "confidence": 99,
+            "explanation": "SSL certificate is valid and issued by a verified authority.",
+            "whyItMatters": "Phishing links typically lack secure encrypting attributes."
+          }
+        ],
+        "recommendations": [
+          "Confirm domain matches official corporate branding pages.",
+          "Inspect URL path query strings for malicious parameters."
+        ],
+        "riskAssessment": {
+          "riskLevel": "Low",
+          "threatSeverity": "Low",
+          "riskFactors": [
+            "Secure SSL encryption",
+            "Valid registrar records"
+          ]
+        },
+        "claims": [],
+        "evidenceSources": [],
+        "credibilityAnalysis": {
+          "authorCredibility": "N/A - Unknown author.",
+          "writingQuality": "N/A - Standard syntactic structure.",
+          "citationQuality": "N/A - References not assessed.",
+          "consistency": "N/A - Consistency check skipped.",
+          "transparency": "N/A - Publisher metrics missing.",
+          "overallCredibility": 50
+        },
+        "explainableAI": {
+          "limitations": "Analysis is based on static text classification and pre-trained database checkpoints.",
+          "reasoningSteps": [
+            "Parsing text layout structure.",
+            "Evaluating linguistic patterns against heuristic scales.",
+            "Synthesizing composite threat verdict."
+          ],
+          "importantSentences": [],
+          "suspiciousWording": [],
+          "contradictions": [],
+          "unsupportedClaims": []
+        },
+        "manipulationTechniques": {
+          "emotionalLanguageAnalysis": "Not analyzed.",
+          "clickbaitDetection": "Not analyzed.",
+          "propagandaDetection": "Not analyzed.",
+          "logicalFallacies": "None detected.",
+          "unsupportedClaims": "None detected.",
+          "biasAnalysis": "Neutral presentation style.",
+          "misinformationIndicators": "None detected.",
+          "writingStyle": "Standard syntax.",
+          "linguisticPatterns": "None detected.",
+          "fearTactics": "None detected.",
+          "sensationalLanguage": "None detected.",
+          "politicalBias": "None detected.",
+          "loadedWords": "None detected.",
+          "exaggeration": "None detected."
+        },
+        "reasoning": {
+          "whySuspicious": "No immediate structural anomalies detected.",
+          "whyConclusion": "URL domain verification confirms safe SSL encryption registers, matching valid reputation databases. Threat intelligence registries list zero active phishing reports."
+        },
+        "executiveSummary": "URL domain verification confirms safe SSL encryption registers, matching valid reputation databases. Threat intelligence registries list zero active phishing reports.",
+        "provider": "MockFailover",
+        "model": "failover-local-generator",
+        "switchedToOpenAI": false,
+        "timestamp": "2026-07-01T19:45:41.247Z",
+        "processingTime": 1549
+      },
+      "thumbnail": "",
+      "provider": "MockFailover",
+      "processingTime": 1549,
+      "status": "success",
+      "timeline": [],
+      "createdAt": "2026-07-01T19:45:41.247Z"
+    },
+    {
+      "_id": "s_rm802q2ia",
+      "userId": "u_nrq1nibeh",
+      "type": "url",
+      "content": "https://news.ycombinator.com/",
+      "prediction": "Real",
+      "confidenceScore": 95,
+      "riskLevel": "Low",
+      "credibilityScore": 95,
+      "explanation": "URL domain verification confirms safe SSL encryption registers, matching valid reputation databases. Threat intelligence registries list zero active phishing reports.\n\n✅ SSL AUDIT SUCCESS: The URL uses a secure HTTPS connection with active encryption protocols.",
+      "suspiciousSentences": [],
+      "manipulatedRegions": [],
+      "factCheckReport": null,
+      "thumbnail": "",
+      "provider": "MockFailover",
+      "processingTime": 1302,
+      "status": "success",
+      "timeline": [],
+      "createdAt": "2026-07-01T19:45:42.579Z"
+    },
+    {
+      "_id": "s_poutn1u2h",
+      "userId": "u_yvxx1q94k",
+      "type": "url",
+      "content": "https://www.google.com/",
+      "prediction": "Real",
+      "confidenceScore": 100,
+      "riskLevel": "Low",
+      "credibilityScore": 100,
+      "explanation": "Google.com is the official domain for Google LLC, one of the world's largest and most reputable technology companies. The domain is globally recognized, highly trusted, and serves as the primary portal for its search engine and numerous other services. Ownership is transparent, belonging to Alphabet Inc. (Google's parent company). While Google's platforms host vast amounts of information, the domain itself is not a news outlet and does not publish news content with inherent reporting bias. Its core services are highly reliable, and the SSL status is secure (HTTPS). There is no indication of it being a fake or malicious domain.\n\n✅ SSL AUDIT SUCCESS: The URL uses a secure HTTPS connection with active encryption protocols.",
+      "suspiciousSentences": [],
+      "manipulatedRegions": [],
+      "factCheckReport": null,
+      "thumbnail": "",
+      "provider": "Gemini",
+      "processingTime": 5650,
+      "status": "success",
+      "timeline": [],
+      "createdAt": "2026-07-01T19:48:06.756Z"
+    },
+    {
+      "_id": "s_l03lstlgf",
+      "userId": "u_yvxx1q94k",
+      "type": "text",
+      "content": "This is a test scan text. It must be at least fifty characters long in order to execute the diagnost...",
+      "prediction": "Real",
+      "confidenceScore": 95,
+      "riskLevel": "Low",
+      "credibilityScore": 95,
+      "explanation": "URL domain verification confirms safe SSL encryption registers, matching valid reputation databases. Threat intelligence registries list zero active phishing reports.",
+      "suspiciousSentences": [],
+      "manipulatedRegions": [],
+      "factCheckReport": {
+        "prediction": "Real",
+        "confidenceScore": 95,
+        "verdict": "safe",
+        "riskLevel": "Low",
+        "aiGeneratedProbability": 5,
+        "humanAuthenticityProbability": 95,
+        "trustScore": 95,
+        "credibilityScore": 95,
+        "explanation": "URL domain verification confirms safe SSL encryption registers, matching valid reputation databases. Threat intelligence registries list zero active phishing reports.",
+        "findings": [
+          {
+            "title": "Domain reputation",
+            "severity": "None",
+            "confidence": 98,
+            "explanation": "Domain has high credibility score and long standing registration history.",
+            "whyItMatters": "Suspicious sites are often hosted on newly registered domain extensions."
+          },
+          {
+            "title": "SSL Security",
+            "severity": "None",
+            "confidence": 99,
+            "explanation": "SSL certificate is valid and issued by a verified authority.",
+            "whyItMatters": "Phishing links typically lack secure encrypting attributes."
+          }
+        ],
+        "recommendations": [
+          "Confirm domain matches official corporate branding pages.",
+          "Inspect URL path query strings for malicious parameters."
+        ],
+        "riskAssessment": {
+          "riskLevel": "Low",
+          "threatSeverity": "Low",
+          "riskFactors": [
+            "Secure SSL encryption",
+            "Valid registrar records"
+          ]
+        },
+        "claims": [],
+        "evidenceSources": [],
+        "credibilityAnalysis": {
+          "authorCredibility": "N/A - Unknown author.",
+          "writingQuality": "N/A - Standard syntactic structure.",
+          "citationQuality": "N/A - References not assessed.",
+          "consistency": "N/A - Consistency check skipped.",
+          "transparency": "N/A - Publisher metrics missing.",
+          "overallCredibility": 50
+        },
+        "explainableAI": {
+          "limitations": "Analysis is based on static text classification and pre-trained database checkpoints.",
+          "reasoningSteps": [
+            "Parsing text layout structure.",
+            "Evaluating linguistic patterns against heuristic scales.",
+            "Synthesizing composite threat verdict."
+          ],
+          "importantSentences": [],
+          "suspiciousWording": [],
+          "contradictions": [],
+          "unsupportedClaims": []
+        },
+        "manipulationTechniques": {
+          "emotionalLanguageAnalysis": "Not analyzed.",
+          "clickbaitDetection": "Not analyzed.",
+          "propagandaDetection": "Not analyzed.",
+          "logicalFallacies": "None detected.",
+          "unsupportedClaims": "None detected.",
+          "biasAnalysis": "Neutral presentation style.",
+          "misinformationIndicators": "None detected.",
+          "writingStyle": "Standard syntax.",
+          "linguisticPatterns": "None detected.",
+          "fearTactics": "None detected.",
+          "sensationalLanguage": "None detected.",
+          "politicalBias": "None detected.",
+          "loadedWords": "None detected.",
+          "exaggeration": "None detected."
+        },
+        "reasoning": {
+          "whySuspicious": "No immediate structural anomalies detected.",
+          "whyConclusion": "URL domain verification confirms safe SSL encryption registers, matching valid reputation databases. Threat intelligence registries list zero active phishing reports."
+        },
+        "executiveSummary": "URL domain verification confirms safe SSL encryption registers, matching valid reputation databases. Threat intelligence registries list zero active phishing reports.",
+        "provider": "MockFailover",
+        "model": "failover-local-generator",
+        "switchedToOpenAI": false,
+        "timestamp": "2026-07-01T19:48:52.767Z",
+        "processingTime": 1804
+      },
+      "thumbnail": "",
+      "provider": "MockFailover",
+      "processingTime": 1804,
+      "status": "success",
+      "timeline": [],
+      "createdAt": "2026-07-01T19:48:52.767Z"
+    },
+    {
+      "_id": "s_ag0eilfds",
+      "userId": "u_ufswwc7jr",
+      "type": "url",
+      "content": "https://www.google.com/",
+      "prediction": "Real",
+      "confidenceScore": 95,
+      "riskLevel": "Low",
+      "credibilityScore": 95,
+      "explanation": "URL domain verification confirms safe SSL encryption registers, matching valid reputation databases. Threat intelligence registries list zero active phishing reports.\n\n✅ SSL AUDIT SUCCESS: The URL uses a secure HTTPS connection with active encryption protocols.",
+      "suspiciousSentences": [],
+      "manipulatedRegions": [],
+      "factCheckReport": null,
+      "thumbnail": "",
+      "provider": "MockFailover",
+      "processingTime": 2258,
+      "status": "success",
+      "timeline": [],
+      "createdAt": "2026-07-01T19:52:44.775Z"
+    },
+    {
+      "_id": "s_b7am57f03",
+      "userId": "u_ufswwc7jr",
+      "type": "text",
+      "content": "PDF File: TruthShield_Report_6a456af0e935130b221caf14.pdf",
+      "prediction": "Real",
+      "confidenceScore": 92,
+      "riskLevel": "Low",
+      "credibilityScore": 92,
+      "explanation": "mockVideoExecutiveSummary",
+      "suspiciousSentences": [],
+      "manipulatedRegions": [],
+      "factCheckReport": {
+        "prediction": "Real",
+        "confidenceScore": 92,
+        "verdict": "Authentic",
+        "riskLevel": "Low",
+        "manipulationSeverity": "None",
+        "aiGeneratedProbability": 8,
+        "humanAuthenticityProbability": 92,
+        "trustScore": 92,
+        "executiveSummary": "mockVideoExecutiveSummary",
+        "reasoning": "mockVideoReasoning",
+        "findings": [
+          {
+            "title": "Face consistency",
+            "severity": "None",
+            "confidence": 90,
+            "explanation": "Insufficient evidence to verify this characteristic.",
+            "whyItMatters": "Insufficient evidence to verify this characteristic."
+          },
+          {
+            "title": "Facial landmark stability",
+            "severity": "None",
+            "confidence": 91,
+            "explanation": "Insufficient evidence to verify this characteristic.",
+            "whyItMatters": "Insufficient evidence to verify this characteristic."
+          },
+          {
+            "title": "Eye blinking analysis",
+            "severity": "None",
+            "confidence": 92,
+            "explanation": "Insufficient evidence to verify this characteristic.",
+            "whyItMatters": "Insufficient evidence to verify this characteristic."
+          },
+          {
+            "title": "Lip synchronization",
+            "severity": "None",
+            "confidence": 93,
+            "explanation": "Insufficient evidence to verify this characteristic.",
+            "whyItMatters": "Insufficient evidence to verify this characteristic."
+          },
+          {
+            "title": "Mouth movement consistency",
+            "severity": "None",
+            "confidence": 94,
+            "explanation": "Insufficient evidence to verify this characteristic.",
+            "whyItMatters": "Insufficient evidence to verify this characteristic."
+          },
+          {
+            "title": "Head movement consistency",
+            "severity": "None",
+            "confidence": 95,
+            "explanation": "Insufficient evidence to verify this characteristic.",
+            "whyItMatters": "Insufficient evidence to verify this characteristic."
+          },
+          {
+            "title": "Temporal consistency",
+            "severity": "None",
+            "confidence": 96,
+            "explanation": "Insufficient evidence to verify this characteristic.",
+            "whyItMatters": "Insufficient evidence to verify this characteristic."
+          },
+          {
+            "title": "Frame-to-frame anomalies",
+            "severity": "None",
+            "confidence": 97,
+            "explanation": "Insufficient evidence to verify this characteristic.",
+            "whyItMatters": "Insufficient evidence to verify this characteristic."
+          },
+          {
+            "title": "Motion artifacts",
+            "severity": "None",
+            "confidence": 98,
+            "explanation": "Insufficient evidence to verify this characteristic.",
+            "whyItMatters": "Insufficient evidence to verify this characteristic."
+          },
+          {
+            "title": "GAN generation artifacts",
+            "severity": "None",
+            "confidence": 99,
+            "explanation": "Insufficient evidence to verify this characteristic.",
+            "whyItMatters": "Insufficient evidence to verify this characteristic."
+          },
+          {
+            "title": "Compression artifacts",
+            "severity": "None",
+            "confidence": 90,
+            "explanation": "Insufficient evidence to verify this characteristic.",
+            "whyItMatters": "Insufficient evidence to verify this characteristic."
+          },
+          {
+            "title": "Frame interpolation artifacts",
+            "severity": "None",
+            "confidence": 91,
+            "explanation": "Insufficient evidence to verify this characteristic.",
+            "whyItMatters": "Insufficient evidence to verify this characteristic."
+          },
+          {
+            "title": "Background consistency",
+            "severity": "None",
+            "confidence": 92,
+            "explanation": "Insufficient evidence to verify this characteristic.",
+            "whyItMatters": "Insufficient evidence to verify this characteristic."
+          },
+          {
+            "title": "Lighting consistency",
+            "severity": "None",
+            "confidence": 93,
+            "explanation": "Insufficient evidence to verify this characteristic.",
+            "whyItMatters": "Insufficient evidence to verify this characteristic."
+          },
+          {
+            "title": "Shadow consistency",
+            "severity": "None",
+            "confidence": 94,
+            "explanation": "Insufficient evidence to verify this characteristic.",
+            "whyItMatters": "Insufficient evidence to verify this characteristic."
+          },
+          {
+            "title": "Noise consistency",
+            "severity": "None",
+            "confidence": 95,
+            "explanation": "Insufficient evidence to verify this characteristic.",
+            "whyItMatters": "Insufficient evidence to verify this characteristic."
+          },
+          {
+            "title": "Color consistency",
+            "severity": "None",
+            "confidence": 96,
+            "explanation": "Insufficient evidence to verify this characteristic.",
+            "whyItMatters": "Insufficient evidence to verify this characteristic."
+          },
+          {
+            "title": "Perspective consistency",
+            "severity": "None",
+            "confidence": 97,
+            "explanation": "Insufficient evidence to verify this characteristic.",
+            "whyItMatters": "Insufficient evidence to verify this characteristic."
+          }
+        ],
+        "manipulatedRegions": [],
+        "recommendations": [
+          "mockVideoRecommendation1",
+          "mockVideoRecommendation2"
+        ],
+        "riskAssessment": {
+          "riskLevel": "Low",
+          "trustScore": 92,
+          "authenticityScore": 92,
+          "manipulationScore": 8,
+          "evidenceStrength": "Moderate",
+          "investigationPriority": "Low",
+          "aiConfidenceScore": 92,
+          "riskLevelAssignmentReason": "mockVideoRiskReason",
+          "supportingEvidence": [
+            "mockVideoEvidence1",
+            "mockVideoEvidence2"
+          ],
+          "potentialImpact": "mockVideoImpact",
+          "recommendedAction": "mockVideoAction",
+          "riskExecutiveSummary": "mockVideoRiskSummary"
+        },
+        "claims": [],
+        "evidenceSources": [],
+        "credibilityAnalysis": {
+          "authorCredibility": "N/A - Unknown author.",
+          "writingQuality": "N/A - Standard syntactic structure.",
+          "citationQuality": "N/A - References not assessed.",
+          "consistency": "N/A - Consistency check skipped.",
+          "transparency": "N/A - Publisher metrics missing.",
+          "overallCredibility": 50
+        },
+        "explainableAI": {
+          "limitations": "Analysis is based on static text classification and pre-trained database checkpoints.",
+          "reasoningSteps": [
+            "Parsing text layout structure.",
+            "Evaluating linguistic patterns against heuristic scales.",
+            "Synthesizing composite threat verdict."
+          ],
+          "importantSentences": [],
+          "suspiciousWording": [],
+          "contradictions": [],
+          "unsupportedClaims": []
+        },
+        "manipulationTechniques": {
+          "emotionalLanguageAnalysis": "Not analyzed.",
+          "clickbaitDetection": "Not analyzed.",
+          "propagandaDetection": "Not analyzed.",
+          "logicalFallacies": "None detected.",
+          "unsupportedClaims": "None detected.",
+          "biasAnalysis": "Neutral presentation style.",
+          "misinformationIndicators": "None detected.",
+          "writingStyle": "Standard syntax.",
+          "linguisticPatterns": "None detected.",
+          "fearTactics": "None detected.",
+          "sensationalLanguage": "None detected.",
+          "politicalBias": "None detected.",
+          "loadedWords": "None detected.",
+          "exaggeration": "None detected."
+        },
+        "provider": "MockFailover",
+        "model": "failover-local-generator",
+        "switchedToOpenAI": false,
+        "timestamp": "2026-07-01T19:53:05.500Z",
+        "processingTime": 1737
+      },
+      "thumbnail": "",
+      "provider": "MockFailover",
+      "processingTime": 1737,
+      "status": "success",
+      "timeline": [],
+      "createdAt": "2026-07-01T19:53:05.500Z"
     }
   ],
   "notifications": [
@@ -4204,6 +4740,78 @@
       "type": "success",
       "read": false,
       "createdAt": "2026-07-01T07:11:19.696Z"
+    },
+    {
+      "_id": "n_nz9w9h2uv",
+      "userId": "u_nrq1nibeh",
+      "title": "Scan Completed",
+      "message": "Your url scan for \"https://www.google.com/\" has completed successfully.",
+      "type": "success",
+      "read": false,
+      "createdAt": "2026-07-01T19:38:02.705Z"
+    },
+    {
+      "_id": "n_o6wizw6zr",
+      "userId": "u_nrq1nibeh",
+      "title": "Scan Completed",
+      "message": "Your url scan for \"https://www.google.com/\" has completed successfully.",
+      "type": "success",
+      "read": false,
+      "createdAt": "2026-07-01T19:44:14.989Z"
+    },
+    {
+      "_id": "n_d68qqkvvr",
+      "userId": "u_nrq1nibeh",
+      "title": "Scan Completed",
+      "message": "Your text scan for \"This is a test scan to verify ...\" has completed successfully.",
+      "type": "success",
+      "read": false,
+      "createdAt": "2026-07-01T19:45:41.252Z"
+    },
+    {
+      "_id": "n_ovjcv543i",
+      "userId": "u_nrq1nibeh",
+      "title": "Scan Completed",
+      "message": "Your url scan for \"https://news.ycombinator.com/\" has completed successfully.",
+      "type": "success",
+      "read": false,
+      "createdAt": "2026-07-01T19:45:42.584Z"
+    },
+    {
+      "_id": "n_tsq501g7x",
+      "userId": "u_yvxx1q94k",
+      "title": "Scan Completed",
+      "message": "Your url scan for \"https://www.google.com/\" has completed successfully.",
+      "type": "success",
+      "read": false,
+      "createdAt": "2026-07-01T19:48:06.765Z"
+    },
+    {
+      "_id": "n_o9iru10kw",
+      "userId": "u_yvxx1q94k",
+      "title": "Scan Completed",
+      "message": "Your text scan for \"This is a test scan text. It m...\" has completed successfully.",
+      "type": "success",
+      "read": true,
+      "createdAt": "2026-07-01T19:48:52.775Z"
+    },
+    {
+      "_id": "n_oohqzqn7p",
+      "userId": "u_ufswwc7jr",
+      "title": "Scan Completed",
+      "message": "Your url scan for \"https://www.google.com/\" has completed successfully.",
+      "type": "success",
+      "read": false,
+      "createdAt": "2026-07-01T19:52:44.793Z"
+    },
+    {
+      "_id": "n_870k6fai6",
+      "userId": "u_ufswwc7jr",
+      "title": "Scan Completed",
+      "message": "Your text scan for \"PDF File: TruthShield_Report_6...\" has completed successfully.",
+      "type": "success",
+      "read": false,
+      "createdAt": "2026-07-01T19:53:05.517Z"
     }
   ]
 }

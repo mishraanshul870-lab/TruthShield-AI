@@ -309,6 +309,7 @@ const generateMockResponse = (systemPrompt, userPrompt) => {
       aiGeneratedProbability: 5,
       humanAuthenticityProbability: 95,
       trustScore: 95,
+      credibilityScore: 95,
       explanation: "URL domain verification confirms safe SSL encryption registers, matching valid reputation databases. Threat intelligence registries list zero active phishing reports.",
       findings: [
         { title: "Domain reputation", severity: "None", confidence: 98, explanation: "Domain has high credibility score and long standing registration history.", whyItMatters: "Suspicious sites are often hosted on newly registered domain extensions." },
