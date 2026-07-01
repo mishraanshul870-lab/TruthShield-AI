@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import ImageForensicResult from '../components/ImageForensicResult';
 
 const AnalyzeImage = () => {
-  const { t } = useTranslation('image');
+  const { t, i18n } = useTranslation('image');
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState('');
   const [loading, setLoading] = useState(false);
@@ -95,7 +95,10 @@ const AnalyzeImage = () => {
       const formData = new FormData();
       formData.append('image', file);
 
-      const headers = { 'Authorization': `Bearer ${token}` };
+      const headers = { 
+        'Authorization': `Bearer ${token}`,
+        'x-language': i18n.language || 'en'
+      };
 
       if (customHFKey) {
         headers['x-huggingface-key'] = customHFKey;

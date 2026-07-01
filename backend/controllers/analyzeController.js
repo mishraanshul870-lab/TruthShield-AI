@@ -6,7 +6,7 @@ import sharp from 'sharp';
 import crypto from 'crypto';
 import { parsePdfText } from '../utils/pdfParser.js';
 import { processImageForensics } from '../utils/imageForensics.js';
-import { Scan } from '../config/models.js';
+import { Scan, Notification } from '../config/models.js';
 import { ProviderManager } from '../services/ai/ProviderManager.js';
 
 // FFmpeg setup
@@ -1958,6 +1958,16 @@ Do NOT translate JSON keys. Only translate the string values.
   } catch (error) {
     if (filePath) deleteFile(filePath);
     console.error('Text analysis error:', error);
+    try {
+      await Notification.create({
+        userId: req.user.id,
+        title: error.name === 'PipelineError' || error.message.includes('API') || error.message.includes('Key') ? 'API Error' : 'Scan Failed',
+        message: `Text analysis failed: ${error.message}`,
+        type: 'error'
+      });
+    } catch (nErr) {
+      console.error('[Notification error]:', nErr);
+    }
     if (error.name === 'PipelineError') {
       return res.status(500).json({
         message: error.message,
@@ -2085,6 +2095,16 @@ Do NOT translate JSON keys. Only translate the string values.
 
   } catch (error) {
     console.error('URL analysis error:', error);
+    try {
+      await Notification.create({
+        userId: req.user.id,
+        title: error.name === 'PipelineError' || error.message.includes('API') || error.message.includes('Key') ? 'API Error' : 'Scan Failed',
+        message: `URL verification failed: ${error.message}`,
+        type: 'error'
+      });
+    } catch (nErr) {
+      console.error('[Notification error]:', nErr);
+    }
     if (error.name === 'PipelineError') {
       return res.status(500).json({
         message: error.message,
@@ -2582,6 +2602,16 @@ Do NOT translate JSON keys. Only translate the string values.
   } catch (error) {
     deleteFile(filePath);
     console.error('[IMAGE FORENSICS] Analysis error:', error);
+    try {
+      await Notification.create({
+        userId: req.user.id,
+        title: error.name === 'PipelineError' || error.message.includes('API') || error.message.includes('Key') ? 'API Error' : 'Scan Failed',
+        message: `Image forensics analysis failed: ${error.message}`,
+        type: 'error'
+      });
+    } catch (nErr) {
+      console.error('[Notification error]:', nErr);
+    }
     if (error.name === 'PipelineError') {
       return res.status(500).json({
         message: error.message,
@@ -3317,6 +3347,16 @@ ${JSON.stringify(analysisLogs, null, 2)}
       for (const fp of framePaths) deleteFile(fp);
     }
     console.error('Video deepfake analysis error:', error);
+    try {
+      await Notification.create({
+        userId: req.user.id,
+        title: error.name === 'PipelineError' || error.message.includes('API') || error.message.includes('Key') ? 'API Error' : 'Scan Failed',
+        message: `Video forensic analysis failed: ${error.message}`,
+        type: 'error'
+      });
+    } catch (nErr) {
+      console.error('[Notification error]:', nErr);
+    }
     res.status(500).json({ message: 'Error processing video analysis: ' + error.message });
   }
 };

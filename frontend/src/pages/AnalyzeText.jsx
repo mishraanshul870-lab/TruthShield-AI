@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import FactCheckResult from '../components/FactCheckResult';
 
 const AnalyzeText = () => {
-  const { t } = useTranslation('text');
+  const { t, i18n } = useTranslation('text');
   const [text, setText] = useState('');
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -44,7 +44,10 @@ const AnalyzeText = () => {
       const customOpenAIKey = localStorage.getItem('x-openai-key') || '';
       
       let response;
-      const headers = { 'Authorization': `Bearer ${token}` };
+      const headers = { 
+        'Authorization': `Bearer ${token}`,
+        'x-language': i18n.language || 'en'
+      };
       
       if (customOpenAIKey) {
         headers['x-openai-key'] = customOpenAIKey;

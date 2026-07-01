@@ -94,6 +94,10 @@
   "fearTactics": "Fear Tactics",
   "sensationalLanguage": "Sensational Language",
   "politicalBias": "Political Bias",
-  "loadedWords": "Loaded Words",
-  "exaggeration": "Exaggeration"
+  "exaggeration": "Exaggeration",
+  "reliabilityShort": "Rel:",
+  "publishedLabel": "Published:",
+  "preciseSuffix": "Precise",
+  "weightSuffix": "Weight",
+  "lowHeuristic": "Low / Heuristic"
 }

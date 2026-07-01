@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Globe, ChevronDown, Check } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { changeLanguage, currentLanguage } from '../i18n';
@@ -6,6 +7,8 @@ import { changeLanguage, currentLanguage } from '../i18n';
 const LanguageSwitcher = () => {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
+  const triggerRef = useRef(null);
+  const [coords, setCoords] = useState({ top: 0, left: 0, width: 0 });
   const activeLang = currentLanguage();
 
   const languages = [
@@ -20,9 +23,33 @@ const LanguageSwitcher = () => {
 
   const activeLangObj = languages.find(l => l.code === activeLang) || languages[0];
 
+  const updateCoords = () => {
+    if (triggerRef.current) {
+      const rect = triggerRef.current.getBoundingClientRect();
+      setCoords({
+        top: rect.bottom + window.scrollY,
+        left: rect.left + window.scrollX,
+        width: rect.width
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (open) {
+      updateCoords();
+      window.addEventListener('resize', updateCoords);
+      window.addEventListener('scroll', updateCoords, true);
+    }
+    return () => {
+      window.removeEventListener('resize', updateCoords);
+      window.removeEventListener('scroll', updateCoords, true);
+    };
+  }, [open]);
+
   return (
     <div className="relative inline-block text-left select-none">
       <button
+        ref={triggerRef}
         type="button"
         onClick={() => setOpen(!open)}
         className="flex items-center gap-2.5 px-4 py-2 bg-white/5 border border-white/5 hover:border-[#7C3AED]/40 rounded-xl hover:bg-white/10 transition-all font-sans text-xs font-bold text-slate-350"
@@ -38,12 +65,22 @@ const LanguageSwitcher = () => {
         <ChevronDown size={11} className="text-slate-500" />
       </button>
 
-      {open && (
+      {open && createPortal(
         <>
           {/* Backdrop transparent click interceptor */}
-          <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />
+          <div className="fixed inset-0 z-[9999]" onClick={() => setOpen(false)} />
           
-          <div className="absolute right-0 mt-2 w-40 bg-[#12182D]/95 border border-white/10 rounded-2xl shadow-2xl py-1.5 z-20 backdrop-blur-[20px] animate-fadeIn">
+          <div 
+            style={{
+              position: 'absolute',
+              top: `${coords.top + 6}px`, // sideOffset = 6
+              left: `${coords.left}px`,
+              minWidth: `${coords.width}px`,
+              maxHeight: '220px',
+              overflowY: 'auto'
+            }}
+            className="bg-[#12182D]/95 border border-white/10 rounded-2xl shadow-2xl py-1.5 z-[10000] backdrop-blur-[20px] animate-fadeIn"
+          >
             {languages.map((lng) => {
               const isSelected = activeLang === lng.code;
               return (
@@ -66,7 +103,8 @@ const LanguageSwitcher = () => {
               );
             })}
           </div>
-        </>
+        </>,
+        document.body
       )}
     </div>
   );

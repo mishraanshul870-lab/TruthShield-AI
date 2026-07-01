@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  ShieldAlert, ShieldCheck, Download, AlertTriangle, Cpu, Globe, 
-  RefreshCw, ChevronDown, ChevronUp, FileText, 
+import {
+  ShieldAlert, ShieldCheck, Download, AlertTriangle, Cpu, Globe,
+  RefreshCw, ChevronDown, ChevronUp, FileText,
   AlertCircle, ExternalLink, Activity, Info
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -28,7 +28,7 @@ const FactCheckResult = ({ result, onScanAgain }) => {
 
   const [downloading, setDownloading] = useState(false);
   const [expandedClaim, setExpandedClaim] = useState(0); // Accordion state for claim ledger
-  
+
   // Section toggle states
   const [showSummary, setShowSummary] = useState(true);
   const [showClaims, setShowClaims] = useState(true);
@@ -41,22 +41,22 @@ const FactCheckResult = ({ result, onScanAgain }) => {
 
   // Extract variables (support both raw controller response and scan wrapper object)
   const report = result.factCheckReport || result;
-  
+
   const detailedVerdict = report.prediction || result.prediction || 'Mixed';
   const isFake = ['Fake', 'Likely Fake', 'Misleading'].includes(detailedVerdict);
   const isMixed = ['Mixed', 'Unverifiable'].includes(detailedVerdict);
   const risk = report.riskLevel || 'Low';
   const confidenceScore = report.confidenceScore || 50;
-  
-  const trustScore = report.trustScore !== undefined 
-    ? report.trustScore 
+
+  const trustScore = report.trustScore !== undefined
+    ? report.trustScore
     : (isFake ? (100 - confidenceScore) : (isMixed ? 50 : confidenceScore));
 
   const executiveSummary = report.executiveSummary || report.explanation || result.explanation || '';
   const claims = report.claims || [];
   const evidenceSources = report.evidenceSources || [];
   const recommendations = report.recommendations || [];
-  
+
   const reasoning = report.reasoning || {
     whySuspicious: isFake ? 'The text contains multiple clickbait and sensationalist phrases typical of fabricated copycat releases.' : 'The text maintains an objective tone matching verified factual reports.',
     whyConclusion: report.explanation || 'Classification completed.'
@@ -124,7 +124,7 @@ const FactCheckResult = ({ result, onScanAgain }) => {
     High: { text: 'text-rose-500', border: 'border-rose-500/20', bg: 'bg-rose-500/5', shadow: 'shadow-glow-purple', hex: '#EF4444' },
     Critical: { text: 'text-red-600', border: 'border-red-600/30', bg: 'bg-red-950/10', shadow: 'shadow-[0_0_25px_rgba(220,38,38,0.35)]', hex: '#DC2626' }
   };
-  
+
   const theme = riskColors[risk] || riskColors.Low;
 
   const handleDownloadPDF = async () => {
@@ -139,14 +139,14 @@ const FactCheckResult = ({ result, onScanAgain }) => {
           'Authorization': `Bearer ${token}`
         }
       });
-      
+
       if (!response.ok) throw new Error(t('pdfDownloadError'));
-      
+
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      
+
       const contentDisposition = response.headers.get('content-disposition');
       let filename = `TruthShield_Report_${scanId || 'scan'}.pdf`;
       if (contentDisposition) {
@@ -156,7 +156,7 @@ const FactCheckResult = ({ result, onScanAgain }) => {
         }
       }
       a.download = filename;
-      
+
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -171,7 +171,7 @@ const FactCheckResult = ({ result, onScanAgain }) => {
 
   return (
     <div className="space-y-8 transition-all duration-500">
-      
+
       {/* Failover Notification banner */}
       {result.switchedToOpenAI && (
         <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold flex items-center gap-2.5 shadow-md">
@@ -182,7 +182,7 @@ const FactCheckResult = ({ result, onScanAgain }) => {
 
       {/* 1. Header Panel with Verdict & circular gauges */}
       <div className="glass-panel p-6 md:p-8 border-[#7C3AED]/15 relative overflow-hidden shadow-glow-mixed rounded-2xl">
-        <div 
+        <div
           className="absolute top-0 right-0 w-80 h-80 opacity-5 rounded-full pointer-events-none"
           style={{ background: `radial-gradient(circle, #7C3AED 0%, #00C2FF 50%, transparent 100%)` }}
         ></div>
@@ -224,7 +224,7 @@ const FactCheckResult = ({ result, onScanAgain }) => {
               {downloading ? <RefreshCw size={14} className="animate-spin text-cyber-blue" /> : <Download size={14} />}
               <span>{downloading ? t('compilingPdf') : t('exportReport')}</span>
             </button>
-            
+
             {onScanAgain && (
               <button
                 onClick={onScanAgain}
@@ -249,13 +249,13 @@ const FactCheckResult = ({ result, onScanAgain }) => {
                   </linearGradient>
                 </defs>
                 <circle cx="56" cy="56" r="46" className="stroke-slate-800" strokeWidth="8" fill="transparent" />
-                <circle 
-                  cx="56" 
-                  cy="56" 
-                  r="46" 
-                  stroke="url(#trustGauge)" 
-                  strokeWidth="8" 
-                  fill="transparent" 
+                <circle
+                  cx="56"
+                  cy="56"
+                  r="46"
+                  stroke="url(#trustGauge)"
+                  strokeWidth="8"
+                  fill="transparent"
                   strokeDasharray="289"
                   strokeDashoffset={289 - (trustScore / 100) * 289}
                   strokeLinecap="round"
@@ -290,7 +290,7 @@ const FactCheckResult = ({ result, onScanAgain }) => {
 
       {/* 2. Expandable Section: Executive Summary & AI Reasoning */}
       <div className="glass-panel border-white/5 rounded-2xl overflow-hidden shadow-md">
-        <button 
+        <button
           onClick={() => setShowSummary(!showSummary)}
           className="w-full flex items-center justify-between p-5 text-left border-b border-white/5 bg-white/[0.01]"
         >
@@ -303,7 +303,7 @@ const FactCheckResult = ({ result, onScanAgain }) => {
 
         <AnimatePresence>
           {showSummary && (
-            <motion.div 
+            <motion.div
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
@@ -323,7 +323,7 @@ const FactCheckResult = ({ result, onScanAgain }) => {
                     {translateAI(reasoning.whySuspicious) || t('noAnomalies')}
                   </p>
                 </div>
-                
+
                 <div className="p-4 bg-white/[0.02] border border-white/5 rounded-2xl space-y-2">
                   <h4 className="text-xs font-bold text-cyber-blue uppercase tracking-wider flex items-center gap-2">
                     <Info size={14} />
@@ -341,7 +341,7 @@ const FactCheckResult = ({ result, onScanAgain }) => {
 
       {/* 3. Expandable Section: Factual Claims Analysis Matrix */}
       <div className="glass-panel border-white/5 rounded-2xl overflow-hidden shadow-md">
-        <button 
+        <button
           onClick={() => setShowClaims(!showClaims)}
           className="w-full flex items-center justify-between p-5 text-left border-b border-white/5 bg-white/[0.01]"
         >
@@ -354,7 +354,7 @@ const FactCheckResult = ({ result, onScanAgain }) => {
 
         <AnimatePresence>
           {showClaims && (
-            <motion.div 
+            <motion.div
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
@@ -379,19 +379,18 @@ const FactCheckResult = ({ result, onScanAgain }) => {
                     Unverifiable: { text: 'text-slate-400', bg: 'bg-slate-500/10', border: 'border-slate-500/20' }
                   };
                   const veracityKey = c.status === 'Verified' || c.status === 'Likely True' ? 'Authentic' :
-                                      c.status === 'Likely False' || c.status === 'Likely Fake' ? 'Likely Fake' :
-                                      c.status === 'Fake' || c.status === 'Debunked' ? 'Fake' :
-                                      c.status === 'Mixed' ? 'mixedCredibility' :
-                                      c.status === 'Misleading' ? 'suspiciousAnomaly' : 'Unverifiable';
+                    c.status === 'Likely False' || c.status === 'Likely Fake' ? 'Likely Fake' :
+                      c.status === 'Fake' || c.status === 'Debunked' ? 'Fake' :
+                        c.status === 'Mixed' ? 'mixedCredibility' :
+                          c.status === 'Misleading' ? 'suspiciousAnomaly' : 'Unverifiable';
                   const veracityLabel = t(veracityKey) || c.status;
                   const vTheme = veracityMap[c.status] || veracityMap.Unverifiable;
 
                   return (
-                    <div 
-                      key={i} 
-                      className={`border rounded-2xl overflow-hidden transition-all duration-300 ${
-                        isOpen ? 'border-[#7C3AED]/30 bg-[#121829]/20' : 'border-white/5 bg-white/[0.01] hover:border-white/10'
-                      }`}
+                    <div
+                      key={i}
+                      className={`border rounded-2xl overflow-hidden transition-all duration-300 ${isOpen ? 'border-[#7C3AED]/30 bg-[#121829]/20' : 'border-white/5 bg-white/[0.01] hover:border-white/10'
+                        }`}
                     >
                       <button
                         onClick={() => setExpandedClaim(isOpen ? -1 : i)}
@@ -408,7 +407,7 @@ const FactCheckResult = ({ result, onScanAgain }) => {
                           {isOpen ? <ChevronUp size={14} className="text-slate-500" /> : <ChevronDown size={14} className="text-slate-500" />}
                         </div>
                       </button>
- 
+
                       {isOpen && (
                         <div className="p-5 border-t border-white/5 space-y-4 text-xs leading-relaxed">
                           <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
@@ -423,7 +422,7 @@ const FactCheckResult = ({ result, onScanAgain }) => {
                               {translateAI(c.evidence) || t('noEvidence')}
                             </div>
                           </div>
-                          
+
                           {c.evidenceFound && c.evidenceFound.length > 0 && (
                             <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
                               <span className="md:col-span-1 font-extrabold text-[9px] text-emerald-500 uppercase tracking-widest pt-1">{t('evidenceFound')}</span>
@@ -436,7 +435,7 @@ const FactCheckResult = ({ result, onScanAgain }) => {
                               </div>
                             </div>
                           )}
- 
+
                           {c.evidenceMissing && c.evidenceMissing.length > 0 && (
                             <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
                               <span className="md:col-span-1 font-extrabold text-[9px] text-amber-500 uppercase tracking-widest pt-1">{t('evidenceMissing')}</span>
@@ -472,7 +471,7 @@ const FactCheckResult = ({ result, onScanAgain }) => {
 
       {/* 4. Expandable Section: Manipulation Techniques & Sentiment Audit */}
       <div className="glass-panel border-white/5 rounded-2xl overflow-hidden shadow-md">
-        <button 
+        <button
           onClick={() => setShowManipulation(!showManipulation)}
           className="w-full flex items-center justify-between p-5 text-left border-b border-white/5 bg-white/[0.01]"
         >
@@ -485,7 +484,7 @@ const FactCheckResult = ({ result, onScanAgain }) => {
 
         <AnimatePresence>
           {showManipulation && (
-            <motion.div 
+            <motion.div
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
@@ -523,20 +522,20 @@ const FactCheckResult = ({ result, onScanAgain }) => {
 
       {/* 4.5. Expandable Section: Credibility Analysis */}
       <div className="glass-panel border-white/5 rounded-2xl overflow-hidden shadow-md">
-        <button 
+        <button
           onClick={() => setShowCredibility(!showCredibility)}
           className="w-full flex items-center justify-between p-5 text-left border-b border-white/5 bg-white/[0.01]"
         >
           <div className="flex items-center gap-2">
             <Activity size={16} className="text-cyber-violet animate-pulse" />
-            <h3 className="text-xs font-bold font-display uppercase text-slate-350 tracking-wider">Source & Author Credibility Ledger</h3>
+            <h3 className="text-xs font-bold font-display uppercase text-slate-350 tracking-wider">{t('credibilityTitle')}</h3>
           </div>
           {showCredibility ? <ChevronUp size={16} className="text-slate-400" /> : <ChevronDown size={16} className="text-slate-400" />}
         </button>
 
         <AnimatePresence>
           {showCredibility && (
-            <motion.div 
+            <motion.div
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
@@ -546,13 +545,13 @@ const FactCheckResult = ({ result, onScanAgain }) => {
                 <div className="relative flex items-center justify-center shrink-0">
                   <svg className="w-20 h-20 transform -rotate-90">
                     <circle cx="40" cy="40" r="32" className="stroke-slate-800" strokeWidth="6" fill="transparent" />
-                    <circle 
-                      cx="40" 
-                      cy="40" 
-                      r="32" 
-                      stroke="#8B5CF6" 
-                      strokeWidth="6" 
-                      fill="transparent" 
+                    <circle
+                      cx="40"
+                      cy="40"
+                      r="32"
+                      stroke="#8B5CF6"
+                      strokeWidth="6"
+                      fill="transparent"
                       strokeDasharray="201"
                       strokeDashoffset={201 - (credibilityAnalysis.overallCredibility / 100) * 201}
                       strokeLinecap="round"
@@ -610,7 +609,7 @@ const FactCheckResult = ({ result, onScanAgain }) => {
 
       {/* 5. Expandable Section: Trusted Verification Sources */}
       <div className="glass-panel border-white/5 rounded-2xl overflow-hidden shadow-md">
-        <button 
+        <button
           onClick={() => setShowEvidence(!showEvidence)}
           className="w-full flex items-center justify-between p-5 text-left border-b border-white/5 bg-white/[0.01]"
         >
@@ -623,7 +622,7 @@ const FactCheckResult = ({ result, onScanAgain }) => {
 
         <AnimatePresence>
           {showEvidence && (
-            <motion.div 
+            <motion.div
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
@@ -643,31 +642,35 @@ const FactCheckResult = ({ result, onScanAgain }) => {
                     };
                     const colorClass = alignTheme[source.alignment] || alignTheme.Neutral;
                     const alignmentLabel = source.alignment === 'Supports' ? t('supports') :
-                                           source.alignment === 'Contradicts' ? t('contradicts') :
-                                           source.alignment === 'Neutral' ? t('neutral') : source.alignment;
+                      source.alignment === 'Contradicts' ? t('contradicts') :
+                        source.alignment === 'Neutral' ? t('neutral') : source.alignment;
 
                     return (
-                      <div key={idx} className="p-4 bg-white/[0.02] border border-white/5 rounded-2xl flex flex-col justify-between hover:bg-white/[0.03] transition-colors relative">
-                        <div className="flex items-center gap-1.5 absolute top-3 right-3">
-                          {source.reliabilityScore !== undefined && (
-                            <span className="px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-wider border bg-purple-500/10 text-purple-400 border-purple-500/25 font-mono">
-                              Rel: {source.reliabilityScore}%
-                            </span>
-                          )}
-                          <span className={`px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-wider border ${colorClass}`}>
-                            {alignmentLabel}
-                          </span>
-                        </div>
+                      <div key={idx} className="p-4 bg-white/[0.02] border border-white/5 rounded-2xl flex flex-col justify-between hover:bg-white/[0.03] transition-colors">
                         <div>
-                          <h4 className="text-xs font-black text-white uppercase tracking-wider mb-1.5">{source.sourceName}</h4>
+                          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2.5 mb-2.5">
+                            <div className="min-w-0">
+                              <h4 className="text-xs font-black text-white uppercase tracking-wider break-words">{source.sourceName}</h4>
+                            </div>
+                            <div className="flex items-center gap-1.5 shrink-0 flex-wrap sm:justify-end">
+                              {source.reliabilityScore !== undefined && (
+                                <span className="px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-wider border bg-purple-500/10 text-purple-400 border-purple-500/25 font-mono">
+                                  {t('reliabilityShort')} {source.reliabilityScore}%
+                                </span>
+                              )}
+                              <span className={`px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-wider border ${colorClass}`}>
+                                {alignmentLabel}
+                              </span>
+                            </div>
+                          </div>
                           <p className="text-xs font-bold text-slate-200 mb-1">{source.articleTitle}</p>
-                          <span className="block text-[8px] font-mono text-slate-500 mt-1 uppercase">Published: {source.publicationDate}</span>
+                          <span className="block text-[8px] font-mono text-slate-500 mt-1 uppercase">{t('publishedLabel')} {source.publicationDate}</span>
                         </div>
                         {source.url && source.url !== 'No URL available' && (
-                          <a 
-                            href={source.url} 
-                            target="_blank" 
-                            rel="noopener noreferrer" 
+                          <a
+                            href={source.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="mt-4 flex items-center gap-1.5 text-[9px] font-bold font-display uppercase tracking-widest text-[#7C3AED] hover:text-[#00C2FF] transition-colors"
                           >
                             <span>{t('inspectUrl')}</span>
@@ -686,7 +689,7 @@ const FactCheckResult = ({ result, onScanAgain }) => {
 
       {/* 6. Expandable Section: Explainable AI (XAI) Matrix */}
       <div className="glass-panel border-white/5 rounded-2xl overflow-hidden shadow-md">
-        <button 
+        <button
           onClick={() => setShowXAI(!showXAI)}
           className="w-full flex items-center justify-between p-5 text-left border-b border-white/5 bg-white/[0.01]"
         >
@@ -699,7 +702,7 @@ const FactCheckResult = ({ result, onScanAgain }) => {
 
         <AnimatePresence>
           {showXAI && (
-            <motion.div 
+            <motion.div
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
@@ -717,12 +720,12 @@ const FactCheckResult = ({ result, onScanAgain }) => {
                 <div className="p-4 bg-white/[0.02] border border-white/5 rounded-xl">
                   <span className="block text-[8px] font-extrabold text-slate-500 uppercase tracking-widest mb-1.5 font-display">{t('evidenceWeight')}</span>
                   <span className="font-bold text-xs text-white uppercase tracking-wider">
-                    {evidenceSources.length > 0 ? `${Math.min(100, evidenceSources.length * 40)}% Weight` : 'Low / Heuristic'}
+                    {evidenceSources.length > 0 ? `${Math.min(100, evidenceSources.length * 40)}% ${t('weightSuffix')}` : t('lowHeuristic')}
                   </span>
                 </div>
                 <div className="p-4 bg-white/[0.02] border border-white/5 rounded-xl">
                   <span className="block text-[8px] font-extrabold text-slate-500 uppercase tracking-widest mb-1.5 font-display">{t('confidenceRating')}</span>
-                  <span className="font-bold text-xs text-white uppercase tracking-wider">{confidenceScore}% Precise</span>
+                  <span className="font-bold text-xs text-white uppercase tracking-wider">{confidenceScore}% {t('preciseSuffix')}</span>
                 </div>
               </div>
 
@@ -844,13 +847,13 @@ const FactCheckResult = ({ result, onScanAgain }) => {
           <AlertCircle size={15} className="text-cyber-violet animate-pulse" />
           <span>{t('protocolsTitle')}</span>
         </h3>
-        
+
         <div className="flex flex-col lg:flex-row gap-6 justify-between items-start lg:items-center bg-[#070b18]/45 border border-white/5 p-5 rounded-2xl w-full">
           <div className="space-y-3 flex-grow w-full">
             {recommendations.map((rec, i) => (
               <label key={i} className="flex items-center gap-3 cursor-pointer group w-full">
-                <input 
-                  type="checkbox" 
+                <input
+                  type="checkbox"
                   className="rounded border-white/10 bg-slate-900 text-cyber-violet focus:ring-[#7C3AED] focus:ring-offset-0 focus:ring-1 w-4 h-4"
                 />
                 <span className="text-xs font-semibold text-slate-300 group-hover:text-white uppercase tracking-wider transition-colors">{translateAI(rec)}</span>
@@ -858,11 +861,10 @@ const FactCheckResult = ({ result, onScanAgain }) => {
             ))}
           </div>
 
-          <span className={`px-5 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest border shrink-0 w-full lg:w-auto text-center ${
-            isFake 
-              ? 'bg-rose-500/10 text-rose-455 border-rose-500/25 shadow-glow-purple' 
-              : 'bg-emerald-500/10 text-emerald-400 border-emerald-500/25 shadow-glow-green'
-          }`}>
+          <span className={`px-5 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest border shrink-0 w-full lg:w-auto text-center ${isFake
+            ? 'bg-rose-500/10 text-rose-455 border-rose-500/25 shadow-glow-purple'
+            : 'bg-emerald-500/10 text-emerald-400 border-emerald-500/25 shadow-glow-green'
+            }`}>
             {isFake ? t('doNotCirculate') : t('passedAuthenticity')}
           </span>
         </div>

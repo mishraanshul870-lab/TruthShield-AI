@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import VideoForensicResult from '../components/VideoForensicResult';
 
 const AnalyzeVideo = () => {
-  const { t } = useTranslation('video');
+  const { t, i18n } = useTranslation('video');
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState('');
   const [loading, setLoading] = useState(false);
@@ -154,7 +154,10 @@ const AnalyzeVideo = () => {
       const formData = new FormData();
       formData.append('video', file);
 
-      const headers = { 'Authorization': `Bearer ${token}` };
+      const headers = { 
+        'Authorization': `Bearer ${token}`,
+        'x-language': i18n.language || 'en'
+      };
 
       if (customHFKey) {
         headers['x-huggingface-key'] = customHFKey;

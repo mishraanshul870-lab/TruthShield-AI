@@ -10,13 +10,14 @@ import { fileURLToPath } from 'url';
 // Configurations & Database
 import { connectDB } from './config/db.js';
 import { protect } from './middleware/auth.js';
-import { Scan } from './config/models.js';
+import { Scan, Notification } from './config/models.js';
 
 // Controllers
 import { registerUser, loginUser, getUserProfile, getUserStats, updateUserProfile, updateUserPassword, forgotPassword, resetPassword } from './controllers/authController.js';
 import { analyzeText, verifyUrl, analyzeImage, analyzeVideo, getScanHistory } from './controllers/analyzeController.js';
 import { getDashboardStats } from './controllers/dashboardController.js';
 import { uploadPdf, uploadImage, uploadVideo } from './middleware/upload.js';
+import { getNotifications, createNotification, markAllAsRead, markAsRead, deleteNotification } from './controllers/notificationController.js';
 import { generatePDFReport } from './utils/pdfGenerator.js';
 
 // ES Module dirname resolution
@@ -178,6 +179,13 @@ app.delete('/api/analyze/history', protect, async (req, res) => {
   }
 });
 
+// Notification Routes
+app.get('/api/notifications', protect, getNotifications);
+app.post('/api/notifications', protect, createNotification);
+app.put('/api/notifications/read', protect, markAllAsRead);
+app.put('/api/notifications/:id/read', protect, markAsRead);
+app.delete('/api/notifications/:id', protect, deleteNotification);
+
 // Download PDF Report Route
 app.get('/api/analyze/report/:id', protect, async (req, res) => {
   try {
@@ -191,6 +199,17 @@ app.get('/api/analyze/report/:id', protect, async (req, res) => {
     }
 
     generatePDFReport(scan, res, req.query.lang || 'en');
+
+    try {
+      await Notification.create({
+        userId: req.user.id,
+        title: 'Report Generated',
+        message: `PDF forensic report downloaded for ${scan.type} scan: "${scan.content.substring(0, 30)}${scan.content.length > 30 ? '...' : ''}"`,
+        type: 'success'
+      });
+    } catch (err) {
+      console.error('[Notification report error]:', err);
+    }
   } catch (error) {
     console.error('PDF generation endpoint error:', error);
     res.status(500).json({ message: 'Failed to generate report PDF.' });

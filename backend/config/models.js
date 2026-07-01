@@ -37,8 +37,18 @@ const scanSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
+const notificationSchema = new mongoose.Schema({
+  userId: { type: String, required: true, index: true },
+  title: { type: String, required: true },
+  message: { type: String, required: true },
+  type: { type: String, default: 'info' }, // 'info', 'warning', 'error', 'success'
+  read: { type: Boolean, default: false },
+  createdAt: { type: Date, default: Date.now },
+});
+
 const UserModelMongo = mongoose.model('User', userSchema);
 const ScanModelMongo = mongoose.model('Scan', scanSchema);
+const NotificationModelMongo = mongoose.model('Notification', notificationSchema);
 
 // --- JSON DB MOCK IMPLEMENTATION ---
 
@@ -149,6 +159,89 @@ class ScanJsonModel {
   }
 }
 
+class NotificationJsonModel {
+  static async create(data) {
+    const db = jsonDb.read();
+    db.notifications = db.notifications || [];
+    const newNotif = {
+      _id: 'n_' + Math.random().toString(36).substr(2, 9),
+      userId: data.userId,
+      title: data.title,
+      message: data.message,
+      type: data.type || 'info',
+      read: data.read !== undefined ? data.read : false,
+      createdAt: new Date().toISOString(),
+    };
+    db.notifications.push(newNotif);
+    jsonDb.write(db);
+    return newNotif;
+  }
+
+  static async find(query) {
+    const db = jsonDb.read();
+    db.notifications = db.notifications || [];
+    let results = [];
+    for (let i = db.notifications.length - 1; i >= 0; i--) {
+      const notif = db.notifications[i];
+      let match = true;
+      for (let key in query) {
+        if (notif[key] !== query[key]) {
+          match = false;
+          break;
+        }
+      }
+      if (match) results.push(notif);
+    }
+    return results;
+  }
+
+  static async updateOne(id, updateData) {
+    const db = jsonDb.read();
+    db.notifications = db.notifications || [];
+    const idx = db.notifications.findIndex(notif => notif._id === id);
+    if (idx !== -1) {
+      db.notifications[idx] = { ...db.notifications[idx], ...updateData };
+      jsonDb.write(db);
+      return db.notifications[idx];
+    }
+    return null;
+  }
+
+  static async updateMany(query, updateData) {
+    const db = jsonDb.read();
+    db.notifications = db.notifications || [];
+    let updatedCount = 0;
+    db.notifications = db.notifications.map(notif => {
+      let match = true;
+      for (let key in query) {
+        if (notif[key] !== query[key]) {
+          match = false;
+          break;
+        }
+      }
+      if (match) {
+        updatedCount++;
+        return { ...notif, ...updateData };
+      }
+      return notif;
+    });
+    jsonDb.write(db);
+    return { nModified: updatedCount };
+  }
+
+  static async deleteById(id) {
+    const db = jsonDb.read();
+    db.notifications = db.notifications || [];
+    const idx = db.notifications.findIndex(notif => notif._id === id);
+    if (idx !== -1) {
+      db.notifications.splice(idx, 1);
+      jsonDb.write(db);
+      return true;
+    }
+    return false;
+  }
+}
+
 // --- DYNAMIC DISPATCHER ---
 
 export const User = {
@@ -185,10 +278,70 @@ export const User = {
   }
 };
 
+export const Notification = {
+  create: async (data) => {
+    return getDbState().isMongoConnected ? await NotificationModelMongo.create(data) : await NotificationJsonModel.create(data);
+  },
+  find: async (query) => {
+    return getDbState().isMongoConnected ? await NotificationModelMongo.find(query).sort({ createdAt: -1 }) : await NotificationJsonModel.find(query);
+  },
+  updateOne: async (query, updateData) => {
+    if (getDbState().isMongoConnected) {
+      return await NotificationModelMongo.findOneAndUpdate(query, updateData, { new: true });
+    } else {
+      return await NotificationJsonModel.updateOne(query._id, updateData);
+    }
+  },
+  updateMany: async (query, updateData) => {
+    if (getDbState().isMongoConnected) {
+      return await NotificationModelMongo.updateMany(query, updateData);
+    } else {
+      return await NotificationJsonModel.updateMany(query, updateData);
+    }
+  },
+  deleteById: async (id) => {
+    return getDbState().isMongoConnected ? await NotificationModelMongo.findByIdAndDelete(id) : await NotificationJsonModel.deleteById(id);
+  }
+};
+
 export const Scan = {
   create: async (data) => {
     const res = getDbState().isMongoConnected ? await ScanModelMongo.create(data) : await ScanJsonModel.create(data);
     if (onScanMutationCallback) onScanMutationCallback();
+
+    // Automatically create notifications
+    try {
+      // 1. Scan Completed
+      await Notification.create({
+        userId: data.userId,
+        title: 'Scan Completed',
+        message: `Your ${data.type} scan for "${data.content.substring(0, 30)}${data.content.length > 30 ? '...' : ''}" has completed successfully.`,
+        type: 'success'
+      });
+
+      // 2. High-Risk Scan Detected
+      if (['High', 'Critical'].includes(data.riskLevel)) {
+        await Notification.create({
+          userId: data.userId,
+          title: 'High-Risk Scan Detected',
+          message: `A ${data.riskLevel} risk level has been flagged in your recent ${data.type} scan.`,
+          type: 'warning'
+        });
+      }
+
+      // 3. Deepfake Detected
+      if (data.prediction === 'Fake') {
+        await Notification.create({
+          userId: data.userId,
+          title: 'Deepfake Detected',
+          message: `Synthetic media signatures or manipulated text bias identified in your ${data.type} scan.`,
+          type: 'error'
+        });
+      }
+    } catch (err) {
+      console.error('[Notification hook error]:', err);
+    }
+
     return res;
   },
   find: async (query) => {

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import ResultCard from '../components/ResultCard';
 
 const VerifyUrl = () => {
-  const { t } = useTranslation('url');
+  const { t, i18n } = useTranslation('url');
   const [url, setUrl] = useState('');
   const [loading, setLoading] = useState(false);
   const [statusMessage, setStatusMessage] = useState('');
@@ -39,7 +39,8 @@ const VerifyUrl = () => {
       
       const headers = {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${token}`,
+        'x-language': i18n.language || 'en'
       };
 
       if (customOpenAIKey) {

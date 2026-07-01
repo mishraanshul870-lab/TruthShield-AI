@@ -172,6 +172,29 @@ const HistoryPage = () => {
     link.click();
     link.remove();
     URL.revokeObjectURL(url);
+
+    // Create export completed notification
+    const saveExportNotification = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        await fetch('/api/notifications', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({
+            title: 'Export Completed',
+            message: 'Scan history successfully exported to CSV format.',
+            type: 'success'
+          })
+        });
+        window.dispatchEvent(new Event('notifications-updated'));
+      } catch (err) {
+        console.error('Failed to save export notification:', err);
+      }
+    };
+    saveExportNotification();
   };
 
   useEffect(() => {
@@ -195,6 +218,7 @@ const HistoryPage = () => {
   };
 
   const filteredScans = useMemo(() => {
+    const filterStart = performance.now();
     const results = scans.filter(scan => {
       const q = searchQuery.toLowerCase();
       const verdict = (scan.prediction || '').toLowerCase();
@@ -270,6 +294,7 @@ const HistoryPage = () => {
   }, [scans, searchQuery, filterType, filterVerdict, filterRisk, filterDate, filterProvider, filterDuration]);
 
   const sortedScans = useMemo(() => {
+    const sortStart = performance.now();
     const sorted = [...filteredScans].sort((a, b) => {
       if (sortBy === 'newest') return (b.createdAt || '').localeCompare(a.createdAt || '');
       if (sortBy === 'oldest') return (a.createdAt || '').localeCompare(b.createdAt || '');

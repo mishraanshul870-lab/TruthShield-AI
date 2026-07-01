@@ -94,6 +94,10 @@
   "fearTactics": "भय की रणनीति",
   "sensationalLanguage": "सनसनीखेज भाषा",
   "politicalBias": "राजनीतिक पूर्वाग्रह",
-  "loadedWords": "प्रभावशाली शब्द",
-  "exaggeration": "अतिशयोक्ति"
+  "exaggeration": "अतिशयोक्ति",
+  "reliabilityShort": "विश्वसनीयता:",
+  "publishedLabel": "प्रकाशित:",
+  "preciseSuffix": "सटीक",
+  "weightSuffix": "भार",
+  "lowHeuristic": "कम / अनुमानी"
 }
