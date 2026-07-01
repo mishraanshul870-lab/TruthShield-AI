@@ -80,14 +80,25 @@ app.use((req, res, next) => {
 
   // Intercept the response JSON sending to log outgoing API responses
   const originalJson = res.json;
-  res.json = function (data) {
-    console.log(`\n========================================`);
-    console.log(`[${new Date().toISOString()}] 📤 OUTGOING RESPONSE for ${req.method} ${req.url}`);
+
+res.json = function (data) {
+  try {
+    console.log("\n========================================");
+    console.log(`[${new Date().toISOString()}] 📤 OUTGOING RESPONSE`);
     console.log(`Status Code: ${res.statusCode}`);
-    console.log(`Response Payload:`, JSON.stringify(truncateLargeData(data), null, 2));
-    console.log(`========================================`);
-    return originalJson.apply(this, arguments);
-  };
+
+    console.dir(truncateLargeData(data), {
+      depth: 4,
+      colors: true,
+    });
+
+    console.log("========================================");
+  } catch (err) {
+    console.error("Response logging failed:", err.message);
+  }
+
+  return originalJson.call(this, data);
+};
 
   next();
 });
