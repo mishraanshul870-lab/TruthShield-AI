@@ -13,6 +13,9 @@ const generateToken = (id) => {
 // @route   POST /api/auth/register
 // @access  Public
 export const registerUser = async (req, res) => {
+  console.log("===== REGISTER ROUTE HIT =====");
+  console.log(req.body);
+
   const { username, email, password } = req.body;
 
   if (!username || !email || !password) {
@@ -62,8 +65,10 @@ export const registerUser = async (req, res) => {
 // @route   POST /api/auth/login
 // @access  Public
 export const loginUser = async (req, res) => {
-  const { email, password } = req.body;
+  console.log("===== LOGIN ROUTE HIT =====");
+  console.log(req.body);
 
+  const { email, password } = req.body;
   if (!email || !password) {
     return res.status(400).json({ message: 'Please enter email and password' });
   }
@@ -359,7 +364,7 @@ export const forgotPassword = async (req, res) => {
 
     // Generate token
     const resetToken = crypto.randomBytes(20).toString('hex');
-    
+
     // Hash token to store
     const resetPasswordToken = crypto.createHash('sha256').update(resetToken).digest('hex');
     const resetPasswordExpires = new Date(Date.now() + 30 * 60 * 1000); // 30 minutes from now
