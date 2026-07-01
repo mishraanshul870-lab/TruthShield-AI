@@ -85,7 +85,11 @@ app.use(helmet({
 }));
 
 // 2. Strict CORS Configuration
-const allowedOrigins = ['http://localhost:5173', 'http://localhost:5174'];
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:5174',
+  'https://truthshield-frontend.onrender.com'
+];
 app.use(cors({
   origin: (origin, callback) => {
     // Allow extension requests (which may have no origin or start with chrome-extension://)
