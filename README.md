@@ -1,264 +1,455 @@
-# TruthShield AI – AI-Based Fake News & Deepfake Detection Platform
+<p align="center">
+  <img src="docs/assets/banner.png" alt="TruthShield AI Banner" width="100%">
+</p>
 
-[![Status](https://img.shields.io/badge/Status-Production--Ready-brightgreen.svg)]() 
-[![Version](https://img.shields.io/badge/Version-v2.0.0-blue.svg)]() 
-[![License](https://img.shields.io/badge/License-MIT-orange.svg)]()
+<p align="center">
+  <img src="docs/assets/logo.png" alt="TruthShield AI Logo" width="120">
+</p>
 
-TruthShield AI is a full-stack, AI-powered digital forensics and cybersecurity portfolio platform that audits the authenticity of text documents, URLs, images, and video media. It leverages dual-channel classification structures to identify fake news bias, synthetic image generator signatures (GANs/diffusion outputs), and temporal mesh video anomalies.
+<h1 align="center">🛡️ TruthShield AI</h1>
+<p align="center"><strong>AI-Powered Fake News & Deepfake Detection Platform</strong></p>
+<p align="center"><em>Detect • Verify • Explain • Protect</em></p>
 
----
+<p align="center">
+  <a href="https://truthshield-frontend.onrender.com"><img src="https://img.shields.io/badge/Live%20Demo-Visit%20Platform-00E676?style=for-the-badge&logo=render&logoColor=white" alt="Live Demo"></a>
+  <a href="https://github.com/mishraanshul870-lab/TruthShield-AI"><img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Repo"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-orange.svg?style=for-the-badge" alt="License"></a>
+</p>
 
-## 1. Project Overview
-
-### What it Does
-TruthShield AI scans multi-format media resources—ranging from plaintext snippets, online URLs, and photo uploads, to frame-by-frame video streams—calculating deepfake probability indices, ELA alteration maps, and acoustic/visual sync ratings.
-
-### Why it was Built
-With the exponential rise of synthetic generation engines, online trust is heavily compromised. TruthShield was built as an audit standard for researchers, investigators, and verification specialists to analyze files using advanced deep learning classification with zero complex setup overhead.
-
-### Real-World Use Cases
-*   **Media & Journalism**: Cross-checking user-submitted images, transcripts, or video interviews for face-swap traces or linguistic manipulation.
-*   **Trust and Safety Audits**: Validating incoming URLs against DNS registry metrics and fact-check repositories.
-*   **Digital Forensic Analysis**: Inspecting photos for compression artifacts and downloading structured threat dossiers.
-
----
-
-## 2. Key Features
-
-*   **AI Image Investigation**: Process image files (PNG/JPG/WEBP) for local Error Level Analysis (ELA) and GAN generation traces.
-*   **AI Video Investigation**: Parse MP4/MKV video tracks frame-by-frame for facial boundary alignment, temporal consistency, and audio-to-mouth sync.
-*   **AI Text/PDF Investigation**: Parse text documents or PDF files to index emotional bias density, clickbait triggers, and plagiarism scores.
-*   **AI URL Verification**: Resolve domains against live DNS registers, WHOIS entries, and SSL certificate diagnostic lists.
-*   **Reports Dashboard**: View key statistics, scanner activity graphs, and threat history events.
-*   **History Management**: Search, filter, page, and delete past scan records cleanly.
-*   **Authentication**: Secure session management using bcrypt-hashed credentials and JWT tokens.
-*   **Profile Management**: Inspect profile statistics and update secure login parameters.
-*   **API Key Management**: Custom client override settings for user-provided API credentials.
-*   **English/Hindi Localization**: Completely translated pages, menus, navigation sidebars, and input labels.
-*   **Dynamic Language Switching**: Toggle application language instantly at runtime with zero page refreshes or state loss.
-*   **Localized AI Results**: AI findings, checklists, explanations, and advice text render dynamically in the active locale.
-*   **Localized PDF Reports**: PDF report downloads automatically generate in the selected language layout.
-*   **Browser Extension**: Scan active tab URLs instantly using a Manifest V3 browser extension panel.
-*   **Secure Backend**: Rate-limiters, payload size restrictions, and secure headers protect the API.
-*   **Production Ready**: Configured for high availability, fallback databases, and offline mock support.
+<p align="center">
+  <img src="https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB" alt="React">
+  <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white" alt="Node.js">
+  <img src="https://img.shields.io/badge/Express.js-000000?style=flat-square&logo=express&logoColor=white" alt="Express">
+  <img src="https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white" alt="MongoDB">
+  <img src="https://img.shields.io/badge/Google%20Gemini-4285F4?style=flat-square&logo=google&logoColor=white" alt="Gemini">
+  <img src="https://img.shields.io/badge/JWT-black?style=flat-square&logo=json-web-tokens&logoColor=B375F9" alt="JWT">
+  <img src="https://img.shields.io/badge/TailwindCSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white" alt="TailwindCSS">
+  <img src="https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white" alt="Vite">
+</p>
 
 ---
 
-## 3. Technology Stack
+## 📍 Quick Navigation
 
-### Frontend
-*   **Framework**: React (Vite)
-*   **Styles**: Tailwind CSS v3 (Neon Cyberpunk Theme)
-*   **Icons**: Lucide Icons
-*   **Routing**: React Router DOM
-*   **Localization**: react-i18next
-
-### Backend
-*   **Runtime**: Node.js
-*   **Framework**: Express.js
-*   **File Handling**: Multer
-*   **Security Headers**: Helmet & CORS
-
-### Database
-*   **Primary Database**: MongoDB (via Mongoose)
-*   **Zero-Config Fallback**: Local file-based JSON store (`backend/database.json`) when `MONGO_URI` is absent.
-
-### AI Engine
-*   **Primary API**: Google Gemini AI
-*   **Inference API**: OpenAI (Fallback)
-
-### System Services
-*   **PDF Compiler**: PDFKit
-*   **Extraciton Engine**: PDF-Parse & Fluent-FFmpeg
-*   **Browser Extension**: Chrome Extension Manifest V3 APIs
+- [📖 Project Overview](#-project-overview)
+- [🎯 Why TruthShield AI](#-why-truthshield-ai)
+- [✨ Key Features](#-key-features)
+- [🛠️ Technology Stack](#️-technology-stack)
+- [🏗️ System Architecture](#️-system-architecture)
+- [🔄 Investigation Workflow](#-investigation-workflow)
+- [📸 Screenshot Gallery](#-screenshot-gallery)
+- [⚙️ Installation & Setup](#️-installation--setup)
+- [🔑 Environment Variables](#-environment-variables)
+- [📂 Folder Structure](#-folder-structure)
+- [🔌 API Overview](#-api-overview)
+- [🧩 Browser Extension](#-browser-extension)
+- [🤖 Explainable AI](#-explainable-ai)
+- [🌍 Localization](#-localization)
+- [🚀 Future Roadmap](#-future-roadmap)
+- [🤝 Contributing](#-contributing)
+- [👨‍💻 Developer](#-developer)
+- [📜 License](#-license)
 
 ---
 
-## 4. Project Architecture
+## 📖 Project Overview
 
+**TruthShield AI** is an advanced, production-grade digital forensics and
+cybersecurity platform designed to audit and verify digital content integrity.
+By combining modern artificial intelligence models with robust media processing
+utilities, the platform analyzes multi-format content including news articles,
+uploaded PDF files, static images, video streams, and online web domains.
+
+The platform empowers researchers, verification specialists, and investigators
+by producing comprehensive risk profiles, tampering maps, and natural-language
+explainable dossiers to actively expose misinformation campaigns, synthetic
+generation, and deepfakes.
+
+---
+
+## 🎯 Why TruthShield AI
+
+In the modern digital era, the rapid rise of generative AI has created severe
+trust and security challenges. Fabricated news, face-swaps, synthetic media,
+and phishing links spread quickly, compromising public trust.
+
+**TruthShield AI** addresses this crisis by offering an open-source, unified
+verification portal that replaces typical black-box model predictions with
+transparent, evidence-based reasoning. This allows users to inspect digital
+content critically with zero configuration or setup overhead.
+
+---
+
+## ✨ Key Features
+
+- 📰 **Fake News Detection**: Audits text blocks or PDF uploads, grading claim
+  veracity, emotional bias density, and clickbait anomalies.
+- 🖼️ **Image Deepfake Detection**: Inspects image metadata and applies Error
+  Level Analysis (ELA) to expose generative signatures or local alterations.
+- 🎥 **Video Deepfake Detection**: Examines sequential frames for boundary
+  jitters, facial mesh alignments, and audio-to-mouth sync anomalies.
+- 🌐 **URL Verification**: Resolves web domains against live SSL registries,
+  DNS records, and WHOIS entries to prevent phishing.
+- 🤖 **Explainable AI**: Accompanies all investigation verdicts with clear,
+  detailed, and logical text explanations of the model's reasoning.
+- 📄 **PDF Reports**: Automatically compiles verified findings into a
+  professional, downloadable forensic PDF dossier.
+- 📊 **Interactive Dashboard**: Displays real-time intelligence logs, platform
+  diagnostics counters, and recent activity graphs.
+- 📂 **Dossier History**: Features search, deletion, and query filters to
+  catalog past scan records.
+- 🔐 **Session Authentication**: Secures routing and credential registries
+  using JWT tokens and bcrypt hashing.
+- 🔌 **Browser Extension**: A Manifest V3 panel facilitating instant URL
+  verification directly from active browser tabs.
+- 🌍 **Hindi Localization**: Offers a complete dual-language experience,
+  translating menus, inputs, dashboards, and PDF reports dynamically.
+
+---
+
+## 🛠️ Technology Stack
+
+| Layer | Technologies Used | Implementation Details |
+| :--- | :--- | :--- |
+| **Frontend** | React 19, Vite, Tailwind CSS, react-i18next | Interactive, cyberpunk neon theme UI with runtime language toggling |
+| **Backend** | Node.js, Express.js, Multer, Helmet | REST API secured with rate-limiters, payload restrictions, and custom headers |
+| **Database** | MongoDB Atlas, Mongoose | Relational cloud database featuring a zero-config fallback local JSON database |
+| **AI Integration**| Google Gemini API (gemini-2.5-flash) | Drives explainable reasoning engines and claim validation workflows |
+| **Media Processing**| PDFKit, PDF-parse, Fluent-FFmpeg | Compiles PDF reports, parses PDF uploads, and handles frame extraction |
+
+---
+
+## 🏗️ System Architecture
+
+```text
+                               ┌──────────────────────────────┐
+                               │     Chrome V3 Extension      │
+                               └──────────────┬───────────────┘
+                                              │
+                                              ▼
+                               ┌──────────────────────────────┐
+                               │    React (Vite) Frontend     │
+                               └──────────────┬───────────────┘
+                                              │
+                                         REST API Calls
+                                              │
+                                              ▼
+                               ┌──────────────────────────────┐
+                               │    Express Backend Server    │
+                               └──────────────┬───────────────┘
+                                              │
+                     ┌────────────────────────┼────────────────────────┐
+                     ▼                        ▼                        ▼
+              [Google Gemini AI]      [MongoDB / JSON]        [JWT Authentication]
+             (Explainable Models)    (Dossier Database)      (Secure Session Access)
 ```
-       [ Browser Extension ]
-                 │
-                 ▼
-       [ React Frontend ]  ◄── (react-i18next Switcher)
-                 │
-                 ▼
-       [ Express Backend ] ◄── (pdfKit / Multer filters)
-                 │
-        ┌────────┴────────┐
-        ▼                 ▼
-  [ AI Services ]    [ MongoDB / JSON Fallback ]
-```
+
+- **Frontend client**: Built with React 19 and structured components. Styles
+  are compiled using Tailwind CSS (Neon Cyberpunk theme).
+- **Backend gateway**: Powered by Express.js, providing file storage logic,
+  security wrappers, and interfaces for AI APIs.
+- **Database engines**: Interfaced via Mongoose to MongoDB Atlas. Falls back
+  to a local JSON file if cloud parameters are omitted.
+- **AI processors**: Connects directly to Google Gemini APIs to output
+  explainable reasoning and credibility indexes.
 
 ---
 
-## 5. Folder Structure
+## 🔄 Investigation Workflow
 
-```
-truthshield-ai/
-├── backend/
-│   ├── config/            # DB configuration & database models
-│   ├── controllers/       # Auth & Scan business logic controllers
-│   ├── middleware/        # JWT Authentication, Multer file filters, rate limiters
-│   ├── uploads/           # Secured directory for transient scans
-│   ├── utils/             # PDF text parser, localized PDF report generator
-│   ├── package.json       # Backend configurations & node modules
-│   └── server.js          # Express server entry point
-├── frontend/
-│   ├── src/
-│   │   ├── components/    # Navigation, Language Switcher, Result Cards, Indicators
-│   │   ├── pages/         # Dashboard, Scanners, history, settings panels
-│   │   ├── i18n/          # Locales translations resources bundles (en/hi)
-│   │   └── index.css      # Custom neon cyberpunk styles
-│   ├── package.json       # Frontend configurations & packages
-│   └── vite.config.js     # Vite configuration parameters
-└── extension/
-    ├── manifest.json      # Chrome V3 Extension config
-    ├── popup.html/.js     # Extension popup layout and API triggers
-    └── styles.css         # Cyber neon stylesheet
-```
+1. **Submission**: User inputs text, URL, PDF, image, or video file into the
+   specific scanner panel.
+2. **Metadata Extraction**: Backend reads EXIF headers, registrar WHOIS
+   entries, or codec configurations.
+3. **Forensics Run**: Local routines compute Error Level Analysis (ELA) on
+   images or decode frame sequences from videos.
+4. **AI Inference**: The system invokes Google Gemini to validate statements,
+   analyze claims, and assess semantic structures.
+5. **Dossier Compilation**: System consolidates indicators, confidence
+   ratings, and warnings into a unified state.
+6. **Report Export**: Users view the live result dashboard or generate a
+   print-ready PDF document in the selected language.
 
 ---
 
-## 6. Installation & Setup
+## 📸 Screenshot Gallery
+
+### Authentication
+<table>
+  <tr>
+    <td width="50%" align="center"><strong>Login Gate</strong><br><img src="docs/screenshots/login.png" width="100%"></td>
+    <td width="50%" align="center"><strong>Shield Registry</strong><br><img src="docs/screenshots/register.png" width="100%"></td>
+  </tr>
+</table>
+
+### Dashboard
+<p align="center">
+  <img src="docs/screenshots/dashboard.png" alt="Dashboard" width="100%">
+</p>
+
+### Fake News
+<table>
+  <tr>
+    <td width="50%" align="center"><strong>Text Analysis Panel</strong><br><img src="docs/screenshots/text-detection.png" width="100%"></td>
+    <td width="50%" align="center"><strong>Credibility Report</strong><br><img src="docs/screenshots/text-report.png" width="100%"></td>
+  </tr>
+</table>
+
+### Image Detection
+<table>
+  <tr>
+    <td width="50%" align="center"><strong>Image Analysis Panel</strong><br><img src="docs/screenshots/image-detection.png" width="100%"></td>
+    <td width="50%" align="center"><strong>Forensics Dossier</strong><br><img src="docs/screenshots/image-report.png" width="100%"></td>
+  </tr>
+</table>
+
+### Video Detection
+<table>
+  <tr>
+    <td width="50%" align="center"><strong>Video Analysis Portal</strong><br><img src="docs/screenshots/video-detection.png" width="100%"></td>
+    <td width="50%" align="center"><strong>A/V Forensics Report</strong><br><img src="docs/screenshots/video-report.png" width="100%"></td>
+  </tr>
+</table>
+
+### URL Verification
+<table>
+  <tr>
+    <td width="50%" align="center"><strong>Domain Reputation Panel</strong><br><img src="docs/screenshots/url-verification.png" width="100%"></td>
+    <td width="50%" align="center"><strong>Reputation Dossier</strong><br><img src="docs/screenshots/url-report.png" width="100%"></td>
+  </tr>
+</table>
+
+### Reports & History
+<table>
+  <tr>
+    <td width="50%" align="center"><strong>Verification Reports</strong><br><img src="docs/screenshots/reports.png" width="100%"></td>
+    <td width="50%" align="center"><strong>Historical Integrity Logs</strong><br><img src="docs/screenshots/history.png" width="100%"></td>
+  </tr>
+</table>
+
+### Profile & Settings
+<table>
+  <tr>
+    <td width="50%" align="center"><strong>General Configuration</strong><br><img src="docs/screenshots/settings.png" width="100%"></td>
+    <td width="50%" align="center"><strong>Agent Profile Details</strong><br><img src="docs/screenshots/profile.png" width="100%"></td>
+  </tr>
+</table>
+
+<p align="center">
+  <strong>Credential & Security Center</strong><br>
+  <img src="docs/screenshots/security.png" width="100%">
+</p>
+
+### Hindi UI
+<table>
+  <tr>
+    <td width="50%" align="center"><strong>हिंदी डैशबोर्ड (Hindi Dashboard)</strong><br><img src="docs/screenshots/hindi-dashboard.png" width="100%"></td>
+    <td width="50%" align="center"><strong>इतिहास लॉग (Hindi History)</strong><br><img src="docs/screenshots/hindi-history.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td width="50%" align="center"><strong>सत्यापन रिपोर्ट (Hindi Reports)</strong><br><img src="docs/screenshots/hindi-reports.png" width="100%"></td>
+    <td width="50%" align="center"><strong>सामान्य सेटिंग्स (Hindi Settings)</strong><br><img src="docs/screenshots/hindi-settings.png" width="100%"></td>
+  </tr>
+</table>
+<p align="center">
+  <strong>हिंदी प्रोफाइल (Hindi Profile)</strong><br>
+  <img src="docs/screenshots/hindi-profile.png" width="60%">
+</p>
+
+---
+
+## ⚙️ Installation & Setup
 
 ### Prerequisites
-*   **Node.js**: v18.0.0 or higher
-*   **NPM**: v9.0.0 or higher
-*   **FFmpeg**: Static FFmpeg binaries are automatically configured in the code structure.
+Before deploying the platform, ensure you have the following prerequisites
+installed on your local development machine:
+- **Node.js**: Version 18.0.0 or higher
+- **NPM**: Version 9.0.0 or higher
+- **MongoDB Connection Parameter**: Access to a MongoDB Atlas cluster or a
+  local MongoDB community service
 
-### Clone the Repository
-```bash
-git clone https://github.com/your-username/truthshield-ai.git
-cd truthshield-ai
-```
+### Setup Instructions
 
-### Setup the Backend Server
-1.  Navigate to the backend directory:
-    ```bash
-    cd backend
-    ```
-2.  Install dependencies:
-    ```bash
-    npm install
-    ```
-3.  Configure environment parameters:
-    Copy `.env.example` to `.env`:
-    ```bash
-    cp .env.example .env
-    ```
-4.  Run the development backend server:
-    ```bash
-    npm run dev
-    ```
-    *Note: If no `MONGO_URI` is provided, the server falls back to the zero-config local `database.json` store.*
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/mishraanshul870-lab/TruthShield-AI.git
+   cd TruthShield-AI
+   ```
 
-### Setup the Frontend client
-1.  In a new terminal window, navigate to the frontend directory:
-    ```bash
-    cd ../frontend
-    ```
-2.  Install dependencies:
-    ```bash
-    npm install
-    ```
-3.  Start the local dev server:
-    ```bash
-    npm run dev
-    ```
-4.  Open your browser and navigate to `http://localhost:5173`.
+2. **Backend Setup**:
+   Navigate to the backend directory, install dependencies, configure environment
+   parameters, and launch the service:
+   ```bash
+   cd backend
+   npm install
+   # Create and fill in your .env file using env variables guide
+   npm run dev
+   ```
+   *Note: If no MONGODB_URI is provided, the backend falls back to local database-free JSON store modes.*
 
-### Load the Chrome Extension popup
-1.  Open Google Chrome and navigate to `chrome://extensions/`.
-2.  Enable **Developer mode** in the top-right corner.
-3.  Click **Load unpacked** in the top-left corner.
-4.  Select the `extension/` folder in the project root.
-5.  Copy your secure JWT credentials token from the Profile Settings tab inside the web portal, expand the **Credential Settings** menu in the extension panel, paste the token, and click save.
+3. **Frontend Setup**:
+   Open a separate terminal shell, navigate to the frontend directory, install
+   dependencies, and launch:
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
+   Once loaded, open your browser and navigate to `http://localhost:5173`.
 
 ---
 
-## 7. Environment Variables
+## 🔑 Environment Variables
 
-Create and configure your `.env` variables under `backend/.env`.
-
-```ini
-# Server Port Configuration
+Create and configure a backend `.env` file under `backend/.env`:
+```env
 PORT=5000
+MONGODB_URI=your_mongodb_atlas_connection_string
+JWT_SECRET=your_secure_jwt_token_secret
+GEMINI_API_KEY=your_google_gemini_api_key_credentials
+CLIENT_URL=http://localhost:5173
+```
+> **⚠️ Security Warning:** Never commit your `.env` file or API credential
+> parameters to public repositories.
 
-# MongoDB URI (leave blank to run in-memory / JSON database fallback)
-MONGO_URI=mongodb://localhost:27017/truthshield
+---
 
-# JSON Web Token Secret key
-JWT_SECRET=your_jwt_secret_here
+## 📂 Folder Structure
 
-# AI Credentials (leave blank to run mock diagnostic pipelines)
-OPENAI_API_KEY=your_openai_api_key_here
-HUGGINGFACE_API_KEY=your_huggingface_api_key_here
-GEMINI_API_KEY=your_gemini_api_key_here
+```text
+TruthShield-AI/
+├── backend/
+│   ├── config/            # Database configurations & schema definitions
+│   ├── controllers/       # Route handlers and core controllers
+│   ├── middleware/        # JWT verifiers, Multer file filters, and rate-limiters
+│   ├── uploads/           # Secured directory for temporary scan files
+│   ├── utils/             # ELA logic, static frame extractors, and PDF generators
+│   └── server.js          # Express server initialization gateway
+├── frontend/
+│   ├── public/            # Static assets and site index parameters
+│   ├── src/
+│   │   ├── components/    # Reusable UI widgets, navigation bars, and inputs
+│   │   ├── i18n/          # Locales translations resource files (English & Hindi)
+│   │   └── pages/         # Core pages (Dashboard, Scanners, Settings)
+│   └── vite.config.js     # Vite configuration parameters
+└── extension/             # Chrome Manifest V3 browser extension
 ```
 
 ---
 
-## 8. Usage Guide
+## 🔌 API Overview
 
-1.  **Clearance Access**: Register a new profile or log in with test credentials on the authentication screen.
-2.  **Initialize Scan**:
-    *   **Text/PDF Scanner**: Paste news articles or upload a PDF document.
-    *   **Image face-swap Scanner**: Drag and drop any image file.
-    *   **Video integrity Scanner**: Upload video tracks to extract frames and verify mouth synchronization.
-    *   **URL Scan**: Enter online links to check DNS registries and SSL encryption metrics.
-3.  **Audit Diagnostic details**: Inspect threat level indicators, timeline graphs, and visual anomalies.
-4.  **Download PDF Dossier**: Click **Download PDF Dossier** on any scan page or scan history record.
-5.  **Toggle Language**: Click the **Language Switcher** in the navigation header to translate all controls, AI findings, and exported reports instantly.
+### Authentication Endpoints
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| **POST** | `/api/auth/register` | Registers a new agent profile |
+| **POST** | `/api/auth/login` | Validates credentials and returns a secure JWT token |
+| **GET** | `/api/auth/profile` | Yields the active logged-in agent profile details |
 
----
-
-## 9. Security Implementations
-
-*   **Helmet Headers Configuration**: Express runs Helmet security middleware to prevent clickjacking, MIME-sniffing, and cross-origin resource leaks.
-*   **Strict CORS Policy**: CORS limits origin validation specifically to allowed client ports and extension instances.
-*   **Request & Payload Limits**: Restricts body parsing to a maximum size of `'1mb'` to prevent DoS attempts. Upload scanners enforce safe size boundaries (e.g. 10MB PDF, 15MB Image, 100MB Video).
-*   **MIME-type Enforcements**: Discards user-submitted filenames in disk storage, utilizing randomized timestamps to prevent script traversal or executable execution.
+### Investigation Endpoints
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| **POST** | `/api/analyze/text` | Audits plaintext blocks and PDF uploads for credibility |
+| **POST** | `/api/analyze/image` | Runs Error Level Analysis (ELA) and checks metadata |
+| **POST** | `/api/analyze/video` | Decodes video streams for facial boundary alignment |
+| **POST** | `/api/analyze/url` | Resolves WHOIS registers, SSL status, and reputations |
 
 ---
 
-## 10. Localization Framework
+## 🧩 Browser Extension
 
-TruthShield features a completely localized architecture utilizing `react-i18next` on the client and custom locales loading middleware on the backend:
-*   **Supported Languages**: English (`en`) and Hindi (`hi`).
-*   **Client Localization**: All side navigation trees, form placeholders, loaders, badges, and alerts render in the active language.
-*   **Dossier Localization**: Backend PDF Generators compile canvas labels, compliant signatures, and disclaimers dynamically matching the query language parameter `?lang=`.
+**TruthShield AI** includes a Manifest V3 Chrome browser extension designed for
+rapid domain credibility auditing. 
 
----
-
-## 11. Screenshots Placeholder
-
-*   **Landing Page**: `[Screenshot: Portal Entry & Features Panel]`
-*   **Dashboard View**: `[Screenshot: Scan Statistics and Activity Log charts]`
-*   **Image alteration Analysis**: `[Screenshot: Error Level Analysis and alter indicators]`
-*   **Video mesh Analysis**: `[Screenshot: Frames timeline inspection & lip sync]`
-*   **Text veracity Scanners**: `[Screenshot: Claims veracity checks & bias ratings]`
-*   **URL verification panel**: `[Screenshot: SSL diagnostic lists & DNS lookup status]`
-*   **Dossiers history list**: `[Screenshot: Scans search, status filters, and page controls]`
-*   **API Configuration settings**: `[Screenshot: General, Profiles settings, and custom credentials inputs]`
+Users can save their active web portal JWT credentials inside the extension settings
+panel. When browsing, a single click extracts the tab's current domain and verifies it
+against the live TruthShield API registry, returning immediate trust ratings, warnings,
+and safety indexes directly to the popup UI.
 
 ---
 
-## 12. Future Enhancements
+## 🤖 Explainable AI
 
-*   **Additional Languages**: Incorporate additional localizations like Spanish, German, and Japanese.
-*   **Performance Optimizations**: Multi-threading for local ELA and FFmpeg frame extractions.
-*   **Cloud Deployments**: Configuration mappings for automated Dockerized staging.
-*   **AI Model Expansions**: Support for customized local inference setups.
-
----
-
-## 13. License
-
-Distributed under the MIT License. See `LICENSE` for more information.
+The platform computes a detailed diagnostic reasoning block for every analysis.
+By mapping claims against factual knowledge bases, metadata patterns, and forensic
+alterations (such as image error levels or video boundary jitters), Google Gemini
+compiles a natural-language description explaining the factors behind the verdict,
+ensuring transparent audits.
 
 ---
 
-## 14. Authors & Maintenance
+## 🌍 Localization
 
-Created and maintained by the TruthShield AI Core Engineering team.
+The application features full dual-language translation support for English and
+Hindi managed dynamically through `react-i18next`. 
+
+Localization goes beyond basic interface elements, extending to dynamic loader prompts,
+scan confidence scales, explainable AI dossiers, and compiled PDF downloads. This
+ensures that users receive identical investigation reports in their chosen language.
+
+---
+
+## 🚀 Future Roadmap
+
+- [ ] 🎙️ **Audio Forensics**: Add audio track processing to locate voice cloning signatures.
+- [ ] ☁️ **Cloud Storage**: Migrate temporary file storage to secure AWS S3 buckets.
+- [ ] 🌐 **Additional Languages**: Integrate support for Spanish, German, and Arabic.
+- [ ] 📈 **Performance Workers**: Utilize worker threads to speed up Error Level Analysis.
+
+---
+
+## 🤝 Contributing
+
+We welcome structural improvements, translations, and bugs alerts. Please read
+`CONTRIBUTING.md` for guidelines on submitting issues, feature requests, or pull requests. 
+
+1. Fork the Repository
+2. Create a Feature Branch (`git checkout -b feature/new-module`)
+3. Commit your changes (`git commit -m 'Add new scanner engine'`)
+4. Push to origin (`git push origin feature/new-module`)
+5. Open a Pull Request for code review
+
+---
+
+## 👨‍💻 Developer
+
+<div align="center">
+  <img src="docs/assets/logo.png" width="80" alt="TruthShield AI Logo">
+  <h3>Anshul Mishra</h3>
+  <p><strong>B.Tech Computer Science Engineering</strong></p>
+  <p><em>AI • Cybersecurity • Full Stack Developer</em></p>
+  <p>💼 Open to Internship and Placement Opportunities</p>
+</div>
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License. See `LICENSE` for complete details.
+
+---
+
+## 📊 GitHub Statistics
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=mishraanshul870-lab&show_icons=true&theme=radical" alt="GitHub Stats" width="48%">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=mishraanshul870-lab&layout=compact&theme=radical" alt="Top Langs" width="48%">
+</p>
+<p align="center">
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=mishraanshul870-lab&theme=radical" alt="GitHub Streak" width="97%">
+</p>
+
+---
+
+## 📈 Visitor Counter
+
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=mishraanshul870-lab&color=blueviolet&style=flat-square" alt="Visitor Counter">
+</p>
+
+---
+
+<div align="center">
+  <p>⭐ If you like this project, please consider giving it a Star.</p>
+  <p>Made with ❤️ by <strong>Anshul Mishra</strong></p>
+</div>
