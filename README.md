@@ -177,7 +177,6 @@ content critically with zero configuration or setup overhead.
 ### Authentication
 <table>
   <tr>
-    <td width="50%" align="center"><strong>Login Gate</strong><br><img src="docs/screenshots/login.png" width="100%"></td>
     <td width="50%" align="center"><strong>Shield Registry</strong><br><img src="docs/screenshots/register.png" width="100%"></td>
   </tr>
 </table>
