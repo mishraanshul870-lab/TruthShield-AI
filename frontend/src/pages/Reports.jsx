@@ -5,6 +5,7 @@ import {
   Eye, Trash2, AlertTriangle 
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useSearchParams } from 'react-router-dom';
 import API_BASE from "../api";
 import ResultCard from '../components/ResultCard';
 import FactCheckResult from '../components/FactCheckResult';
@@ -29,6 +30,22 @@ const Reports = () => {
   const [downloadingId, setDownloadingId] = useState(null);
   const [selectedReport, setSelectedReport] = useState(null);
   const [deleteConfirmId, setDeleteConfirmId] = useState(null);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const viewReportId = searchParams.get('view');
+
+  useEffect(() => {
+    if (viewReportId && reports.length > 0) {
+      const found = reports.find(r => r._id === viewReportId);
+      if (found) {
+        setSelectedReport(found);
+      } else {
+        setSelectedReport(null);
+      }
+    } else {
+      setSelectedReport(null);
+    }
+  }, [viewReportId, reports]);
 
   const handleDeleteReport = async (id) => {
     try {
@@ -311,7 +328,7 @@ const Reports = () => {
                     <div className="flex gap-2">
                       <button
                         type="button"
-                        onClick={() => setSelectedReport(report)}
+                        onClick={() => setSearchParams({ view: report._id })}
                         className="flex items-center gap-1.5 px-3 py-1.5 bg-[#4E2EF2]/10 hover:bg-[#4E2EF2]/20 border border-[#4E2EF2]/20 hover:border-[#4E2EF2]/40 text-[#A855F7] text-[10px] font-bold font-display uppercase tracking-wider rounded-xl transition-all"
                       >
                         <Eye size={11} />
@@ -400,8 +417,12 @@ const Reports = () => {
             >
               <button
                 type="button"
-                onClick={() => setSelectedReport(null)}
-                className="absolute top-4 right-4 z-50 px-3.5 py-2 bg-white/5 border border-white/5 hover:bg-rose-500/10 hover:text-rose-400 hover:border-rose-500/20 rounded-xl text-slate-400 font-bold font-display uppercase text-[10px] transition-all"
+                onClick={() => setSearchParams(prev => {
+                  const next = new URLSearchParams(prev);
+                  next.delete('view');
+                  return next;
+                }, { replace: true })}
+                className="absolute top-4 right-4 z-50 px-3.5 py-2 bg-white/5 border border-white/5 hover:bg-rose-500/10 hover:text-rose-450 hover:border-rose-500/20 rounded-xl text-slate-400 font-bold font-display uppercase text-[10px] transition-all"
               >
                 {t('closeDossier')}
               </button>

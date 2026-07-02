@@ -8,6 +8,13 @@
       "createdAt": "2026-01-01T00:00:00.000Z",
       "resetPasswordToken": null,
       "resetPasswordExpires": null
+    },
+    {
+      "_id": "u_lu6kyuet6",
+      "username": "testuser",
+      "email": "testuser@example.com",
+      "password": "$2a$10$Y84QyOZAQZ6v3DuM.57eqOOM8.2zVdF.RARObubQk7c08Phqq02S6",
+      "createdAt": "2026-07-02T14:19:04.676Z"
     }
   ],
   "scans": [
@@ -4774,6 +4781,26 @@
       "status": "success",
       "timeline": [],
       "createdAt": "2026-07-01T20:13:03.247Z"
+    },
+    {
+      "_id": "s_aua7b2wm4",
+      "userId": "u_lu6kyuet6",
+      "type": "url",
+      "content": "https://bbc.com",
+      "prediction": "Real",
+      "confidenceScore": 98,
+      "riskLevel": "Low",
+      "credibilityScore": 93,
+      "explanation": "bbc.com is the official international domain for the British Broadcasting Corporation, a highly reputable and publicly funded national broadcaster of the United Kingdom. Its ownership is transparent, being a public corporation governed by a Royal Charter. The BBC has a long-standing history of professional journalism and a strong commitment to factual reporting, although it has faced occasional accusations of bias from various political perspectives, it is mandated to be impartial. It is widely recognized as a major global news outlet with a strong track record of fact-checked claims and adherence to journalistic standards.\n\n✅ SSL AUDIT SUCCESS: The URL uses a secure HTTPS connection with active encryption protocols.",
+      "suspiciousSentences": [],
+      "manipulatedRegions": [],
+      "factCheckReport": null,
+      "thumbnail": "",
+      "provider": "Gemini",
+      "processingTime": 5645,
+      "status": "success",
+      "timeline": [],
+      "createdAt": "2026-07-02T14:20:26.703Z"
     }
   ],
   "notifications": [
@@ -4956,6 +4983,15 @@
       "type": "success",
       "read": false,
       "createdAt": "2026-07-01T20:13:03.253Z"
+    },
+    {
+      "_id": "n_1jh4gnpyp",
+      "userId": "u_lu6kyuet6",
+      "title": "Scan Completed",
+      "message": "Your url scan for \"https://bbc.com\" has completed successfully.",
+      "type": "success",
+      "read": false,
+      "createdAt": "2026-07-02T14:20:26.729Z"
     }
   ]
 }
